@@ -1,0 +1,43 @@
+spring:
+  application:
+    name: APIGateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+
+      routes:
+
+        - id: apigateway-route
+
+          uri: lb://BOOKING
+
+          predicates:
+
+            - Path=/api/**
+
+
+        - id: apigateway2-route
+
+          uri: lb://SERVICEPROVIDERMANAGEMENT
+
+          predicates:
+
+            - Path=/api/v1/service-provider/**
+
+
+
+
+server:
+  port: 9999
+
+
+management:
+  endpoint:
+
+    gateway:
+      enabled: true
+
+
+
