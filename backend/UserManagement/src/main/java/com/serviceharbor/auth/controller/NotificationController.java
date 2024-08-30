@@ -10,25 +10,23 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/notifications")
+@RequestMapping("/user-management/notifications")
 public class NotificationController {
 
     @Autowired
     private NotificationService notificationService;
 
-//    @PostMapping("/create")
-//    public ResponseEntity<Notification> createNotification(@RequestParam Integer userId, @RequestParam String message) {
-//        Notification newNotification = notificationService.createNotification(userId, message);
-//        return ResponseEntity.ok(newNotification);
-//    }
     @PostMapping("/create")
-    public ResponseEntity<Notification> createNotification(@RequestParam Integer userId, @RequestParam String message) {
+    public ResponseEntity<Notification> createNotification(@RequestParam(name = "userId") Long userId, @RequestParam(name = "message") String message) {
         Notification newNotification = notificationService.createNotification(userId, message);
+        if(newNotification == null){
+            return ResponseEntity.badRequest().build();
+        }
         return ResponseEntity.ok(newNotification);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Notification> getNotificationById(@PathVariable Integer id) {
+    public ResponseEntity<Notification> getNotificationById(@PathVariable Long id) {
         Notification notification = notificationService.getNotificationById(id);
         if (notification != null) {
             return ResponseEntity.ok(notification);
@@ -37,18 +35,18 @@ public class NotificationController {
         }
     }
 
-//    @PutMapping("/update/{id}")
-//    public ResponseEntity<Notification> updateNotification(@PathVariable Integer id, @RequestBody Notification notification) {
-//        Notification updatedNotification = notificationService.updateNotification(id, notification);
-//        if (updatedNotification != null) {
-//            return ResponseEntity.ok(updatedNotification);
-//        } else {
-//            return ResponseEntity.notFound().build();
-//        }
-//    }
+    @PutMapping("/update/{id}")
+    public ResponseEntity<Notification> updateNotification(@PathVariable Long id,@RequestBody Notification notification) {
+        Notification updatedNotification = notificationService.updateNotification(id,notification);
+        if (updatedNotification != null) {
+            return ResponseEntity.ok(updatedNotification);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<Void> deleteNotification(@PathVariable Integer id) {
+    public ResponseEntity<Void> deleteNotification(@PathVariable Long id) {
         boolean isDeleted = notificationService.deleteNotification(id);
         if (isDeleted) {
             return ResponseEntity.noContent().build();
@@ -58,7 +56,7 @@ public class NotificationController {
     }
 
     @GetMapping("/user/{userId}")
-    public ResponseEntity<List<Notification>> getNotificationsByUserId(@PathVariable Integer userId) {
+    public ResponseEntity<List<Notification>> getNotificationsByUserId(@PathVariable Long userId) {
         List<Notification> notifications = notificationService.getNotificationsByUserId(userId);
         return ResponseEntity.ok(notifications);
     }

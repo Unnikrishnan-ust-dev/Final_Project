@@ -1,62 +1,44 @@
 package com.serviceharbor.auth.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
-@Getter
-@Setter
+@Data
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "notifications")
 public class Notification {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
-    // @ManyToOne
-//   @JoinColumn(name = "UserID", nullable = false)
-
-//    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-//    @JoinColumn(name = "user_id", nullable = false)
-//    private User user;
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 
     @Column(name = "Message", nullable = false, columnDefinition = "TEXT")
     private String message;
 
-    @Enumerated(EnumType.STRING)
     @Column(name = "Status")
-    private Status status;
+    private boolean status;
 
     @CreationTimestamp
-    @Column(name = "Timestamp")
-    private Timestamp timestamp;
+    @Column(name = "Created_At")
+    private Timestamp created_at;
 
-    public Notification(Integer id, String message, Status status, Timestamp timestamp) {
-        this.id = id;
-       // this.user = user;
-        this.message = message;
-        this.status = status;
-        this.timestamp = timestamp;
-
-    }
-
-    public Notification() {
-
-    }
-
-
-    // Getters and setters
-
-    public enum Status {
-        UNREAD, READ;
-
-    }
+    @UpdateTimestamp
+    @Column(name = "Updated_At")
+    private Timestamp updated_at;
 }
 
 
