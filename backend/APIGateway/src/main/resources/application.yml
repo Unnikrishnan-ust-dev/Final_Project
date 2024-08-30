@@ -9,22 +9,27 @@ spring:
 
       routes:
 
-        - id: apigateway-route
+        - id: booking-route
 
-          uri: lb://BOOKING
+          uri: lb://BOOKINGMANAGEMENT
 
           predicates:
 
-            - Path=/api/**
+            - Path=/api/bookings-management/**
 
 
-        - id: apigateway2-route
+        - id: service-provider-route
 
           uri: lb://SERVICEPROVIDERMANAGEMENT
 
           predicates:
 
             - Path=/api/v1/service-provider/**
+
+        - id: user-management-route
+          uri: lb://USERMANAGEMENT
+          predicates:
+            - Path=/user-management/**
 
 
 
