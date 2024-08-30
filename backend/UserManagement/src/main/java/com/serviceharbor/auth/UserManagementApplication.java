@@ -16,13 +16,6 @@ public class UserManagementApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(UserManagementApplication.class, args);
 	}
-
-	@Bean
-	CommandLineRunner mappingDemo(UserRepository userRepository, NotificationRepository notificationRepository){
-		return args -> {
-
-		};
-	}
 }
 
 
