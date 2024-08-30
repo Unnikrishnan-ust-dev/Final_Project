@@ -19,23 +19,35 @@ public class NotificationService {
     @Autowired
     private UserRepository userRepository;
 
-    public Notification createNotification(Notification notification) {
+    public Notification createNotification(Long userId, String message) {
+
+        User user =userRepository.findById(userId).orElse(null);
+        if(user==null) return null;
+        Notification notification = new Notification();
+        notification.setMessage(message);
+        notification.setStatus(false);
+        notification.setUser(user);
         return notificationRepository.save(notification);
     }
 
-    public Notification getNotificationById(Integer id) {
+    public Notification getNotificationById(Long id) {
         return notificationRepository.findById(id).orElse(null);
     }
 
-//    public Notification updateNotification(Integer id, Notification notification) {
-//        if (notificationRepository.existsById(id)) {
-//            notification.setId(id);
-//            return notificationRepository.save(notification);
-//        }
-//        return null;
-//    }
+    public List<Notification> getNotificationsByUserId(Long userId) {
+        User user =userRepository.findById(userId).orElse(null);
+        if(user==null) return null;
+        return notificationRepository.findByUser(user);
+    }
 
-    public boolean deleteNotification(Integer id) {
+    public Notification updateNotification(Long id, Notification notification) {
+        if (notificationRepository.existsById(id)) {
+            return notificationRepository.save(notification);
+        }
+        return null;
+    }
+
+    public boolean deleteNotification(Long id) {
         if (notificationRepository.existsById(id)) {
             notificationRepository.deleteById(id);
             return true;
@@ -43,22 +55,6 @@ public class NotificationService {
         return false;
     }
 
-    public List<Notification> getNotificationsByUserId(Integer userId) {
-       // return notificationRepository.findByUserId(userId);
-        return null;
-    }
 
-    public Notification createNotification(Integer userId, String message) {
-
-        User user =userRepository.findById(userId)
-                .orElseThrow(() -> new IllegalArgumentException("User not found"));
-
-        Notification notification = new Notification();
-        notification.setMessage(message);
-        notification.setStatus(Notification.Status.UNREAD);
-        return notificationRepository.save(notification);
-    }
 
 }
-
-///Create Pull Request

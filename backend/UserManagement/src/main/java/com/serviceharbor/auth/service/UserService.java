@@ -1,6 +1,7 @@
 package com.serviceharbor.auth.service;
 
 
+import com.serviceharbor.auth.model.LoginRequest;
 import com.serviceharbor.auth.model.User;
 import com.serviceharbor.auth.repository.UserRepository;
 import lombok.Getter;
@@ -22,7 +23,9 @@ public class UserService {
         return userRepository.findByEmail(email);
     }
 
-    public User authenticateUser(String email, String password) {
+    public User authenticateUser(LoginRequest loginRequest) {
+        String email = loginRequest.getEmail();
+        String password = loginRequest.getPassword();
         User user = userRepository.findByEmail(email);
         if (user != null && user.getPassword().equals(password)) { // Password check should be hashed in a real application
             return user;

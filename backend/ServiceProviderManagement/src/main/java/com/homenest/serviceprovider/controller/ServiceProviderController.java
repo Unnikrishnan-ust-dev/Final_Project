@@ -9,7 +9,7 @@ import com.homenest.serviceprovider.service.ServiceProviderService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/service-provider/service-provider-profile")
+@RequestMapping("/api/v1/service-provider/service-provider-profile/")
 public class ServiceProviderController {
     @Autowired
     private ServiceProviderService serviceProviderService;
