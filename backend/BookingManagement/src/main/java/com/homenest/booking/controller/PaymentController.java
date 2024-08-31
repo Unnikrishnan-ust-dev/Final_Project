@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 @RestController
-@RequestMapping("api/bookings-management/payment")
+@RequestMapping("user/payments")
 public class PaymentController {
 
     @Autowired

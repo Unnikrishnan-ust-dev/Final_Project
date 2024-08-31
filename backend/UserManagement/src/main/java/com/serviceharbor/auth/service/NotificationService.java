@@ -19,7 +19,7 @@ public class NotificationService {
     @Autowired
     private UserRepository userRepository;
 
-    public Notification createNotification(Long userId, String message) {
+    public Notification createNotification(Integer userId, String message) {
 
         User user =userRepository.findById(userId).orElse(null);
         if(user==null) return null;
@@ -34,7 +34,7 @@ public class NotificationService {
         return notificationRepository.findById(id).orElse(null);
     }
 
-    public List<Notification> getNotificationsByUserId(Long userId) {
+    public List<Notification> getNotificationsByUserId(Integer userId) {
         User user =userRepository.findById(userId).orElse(null);
         if(user==null) return null;
         return notificationRepository.findByUser(user);

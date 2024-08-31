@@ -17,7 +17,7 @@ public class NotificationController {
     private NotificationService notificationService;
 
     @PostMapping("/create")
-    public ResponseEntity<Notification> createNotification(@RequestParam(name = "userId") Long userId, @RequestParam(name = "message") String message) {
+    public ResponseEntity<Notification> createNotification(@RequestParam(name = "userId") Integer userId, @RequestParam(name = "message") String message) {
         Notification newNotification = notificationService.createNotification(userId, message);
         if(newNotification == null){
             return ResponseEntity.badRequest().build();
@@ -56,7 +56,7 @@ public class NotificationController {
     }
 
     @GetMapping("/user/{userId}")
-    public ResponseEntity<List<Notification>> getNotificationsByUserId(@PathVariable Long userId) {
+    public ResponseEntity<List<Notification>> getNotificationsByUserId(@PathVariable Integer userId) {
         List<Notification> notifications = notificationService.getNotificationsByUserId(userId);
         return ResponseEntity.ok(notifications);
     }

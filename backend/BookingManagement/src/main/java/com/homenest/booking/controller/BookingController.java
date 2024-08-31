@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("api/bookings-management/bookings")
+@RequestMapping("user/")
 public class BookingController {
 
     @Autowired
@@ -23,7 +23,7 @@ public class BookingController {
         return ResponseEntity.ok(createdBooking);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("bookings/{id}")
     public ResponseEntity<Booking> getBookingById(@PathVariable Integer id) {
         Optional<Booking> booking = bookingService.getBookingById(id);
         return booking.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
