@@ -38,7 +38,10 @@ public class SecurityConfiguration{
                 .csrf(csrf -> csrf.disable())
 
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/auth/**").permitAll() // Allowing requests to /auth/**
+                        .requestMatchers("/auth/**").permitAll()
+                        .requestMatchers("/swagger-ui/**" ,
+                                "/v3/api-docs/**").permitAll()
+                        // Allowing requests to /auth/**
                        // .requestMatchers("/admin/**").hasRole("ADMIN") // Only ADMIN can access /admin/**
                         .requestMatchers("/service_provider/**").hasRole("SERVICE_PROVIDER") // Only SERVICE_PROVIDER can access /provider/**
                         .requestMatchers("/user/**").hasRole("USER") // Only USER can access /user/**
