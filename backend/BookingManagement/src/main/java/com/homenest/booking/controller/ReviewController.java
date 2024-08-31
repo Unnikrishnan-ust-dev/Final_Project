@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 @RestController
-@RequestMapping("api/bookings-management/reviews")
+@RequestMapping("user/reviews")
 public class ReviewController {
 
     @Autowired
