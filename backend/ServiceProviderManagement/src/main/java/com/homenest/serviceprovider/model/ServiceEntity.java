@@ -22,23 +22,25 @@ public class ServiceEntity {
   @Column(name = "ID")
   private Long id;
 
-  @Column(name = "Name", nullable = false, length = 100)
+  @Column(name = "Name", length = 100)
   private String name;
 
-  @Column(name = "Category", nullable = false, length = 100)
+
+
+  @Column(name = "Category", length = 100)
   private String category;
 
   @Column(name = "Description")
   private String description;
 
-  @Column(name = "Price", nullable = false)
+  @Column(name = "Price")
   private double price;
 
-  @Column(name = "ProviderID", nullable = false)
+  @Column(name = "ProviderID")
   private Long providerId;
 
   @CreationTimestamp
-  @Column(name = "CreatedAt",updatable = false)
+  @Column(name = "CreatedAt")
   private Timestamp createdAt;
 
   @UpdateTimestamp

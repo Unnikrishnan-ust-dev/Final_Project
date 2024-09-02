@@ -10,13 +10,13 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/user-management/notifications")
+@RequestMapping("/notifications")
 public class NotificationController {
 
     @Autowired
     private NotificationService notificationService;
 
-    @PostMapping("/create")
+    @PostMapping("/createNotification")
     public ResponseEntity<Notification> createNotification(@RequestParam(name = "userId") Long userId, @RequestParam(name = "message") String message) {
         Notification newNotification = notificationService.createNotification(userId, message);
         if(newNotification == null){
@@ -25,7 +25,7 @@ public class NotificationController {
         return ResponseEntity.ok(newNotification);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/getNotificationById")
     public ResponseEntity<Notification> getNotificationById(@PathVariable Long id) {
         Notification notification = notificationService.getNotificationById(id);
         if (notification != null) {
@@ -35,7 +35,7 @@ public class NotificationController {
         }
     }
 
-    @PutMapping("/update/{id}")
+    @PutMapping("/updateNotification/{id}")
     public ResponseEntity<Notification> updateNotification(@PathVariable Long id,@RequestBody Notification notification) {
         Notification updatedNotification = notificationService.updateNotification(id,notification);
         if (updatedNotification != null) {
@@ -45,7 +45,7 @@ public class NotificationController {
         }
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/deleteNotification/{id}")
     public ResponseEntity<Void> deleteNotification(@PathVariable Long id) {
         boolean isDeleted = notificationService.deleteNotification(id);
         if (isDeleted) {

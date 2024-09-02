@@ -11,27 +11,27 @@ import org.hibernate.annotations.UpdateTimestamp;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
-
 @Getter
 @Setter
 @Entity
-@Table(name = "bookings")
+@Table(name = "bookingDemo")
 public class Booking {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
-    @Column(name = "ServiceID")
-    private Integer serviceId;
 
-    @Column(name = "UserID")
-    private Integer userId;
+    @Column(name = "ServiceID", nullable = false)
+    private Long serviceId;
+
+    @Column(name = "UserID", nullable = false)
+    private Long userId;
 
     @Column(name = "DateTime")
     private LocalDateTime dateTime;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "Status")
+    @Column(name = "Status", nullable = false)
     private BookingStatus status;
 
     @Column(name = "PaymentID")
@@ -50,9 +50,4 @@ public class Booking {
     @Column(name = "UpdatedAt")
     @UpdateTimestamp
     private Timestamp updatedAt;
-
-
-    
-    
-    
 }

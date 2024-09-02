@@ -20,13 +20,30 @@ spring:
           - id: lbservice-route
             uri: lb://BOOKINGMANAGEMENT
             predicates:
-              - Path=/user/**
+              - Path=/booking/**
 
-          # Uncomment and modify the following block if you need additional routes
-          # - id: lbservice2-route
-          #   uri: lb://EXPENSE
-          #   predicates:
-          #     - Path=/expenses/**
+
+          - id: lbservice2-route
+            uri: lb://SERVICEPROVIDERMANAGEMENT
+            predicates:
+               - Path=/services/**
+
+
+          - id: lbservice3-route
+            uri: lb://SERVICEPROVIDERMANAGEMENT
+            predicates:
+              - Path=/service-provider/**
+
+          - id: lbservice4-route
+            uri: lb://BOOKINGMANAGEMENT
+            predicates:
+              - Path=/payments/**
+
+
+          - id: lbservice5-route
+            uri: lb://BOOKINGMANAGEMENT
+            predicates:
+              - Path=/reviews/**
 
     discovery:
       enabled: true

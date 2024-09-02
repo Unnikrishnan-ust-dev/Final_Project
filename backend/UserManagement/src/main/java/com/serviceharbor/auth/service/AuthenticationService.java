@@ -46,7 +46,9 @@ public class AuthenticationService {
         user.setLastName(input.getLastName());
         user.setEmail(input.getEmail());
         user.setPassword(passwordEncoder.encode(input.getPassword()));
-        user.setRole(Role.valueOf(input.getRole().toUpperCase())); // Assuming Role is an enum
+        user.setRole(Role.valueOf(input.getRole().toUpperCase()));
+        user.setPhoneNo(input.getPhoneNo());
+        // Assuming Role is an enum
 
         // Save the user in the database
         return userRepository.save(user);

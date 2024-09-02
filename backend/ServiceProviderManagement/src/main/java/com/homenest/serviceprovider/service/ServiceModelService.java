@@ -1,6 +1,9 @@
 package com.homenest.serviceprovider.service;
 
+import com.homenest.serviceprovider.client.ServiceClient;
+
 import com.homenest.serviceprovider.model.ServiceEntity;
+import com.homenest.serviceprovider.model.UserResponseDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.homenest.serviceprovider.repository.ServiceRepository;
@@ -11,7 +14,14 @@ public class ServiceModelService {
     @Autowired
     private ServiceRepository serviceRepository;
 
-    public ServiceEntity  addService(ServiceEntity service) {
+    @Autowired
+    private ServiceClient serviceClient;
+
+    public ServiceEntity  addService(ServiceEntity service, String userEmail) {
+        UserResponseDto userResponse = serviceClient.getUserByEmail(userEmail);
+
+        System.out.println(userResponse);
+        service.setProviderId(userResponse.getId());
         return serviceRepository.save(service);
     }
 

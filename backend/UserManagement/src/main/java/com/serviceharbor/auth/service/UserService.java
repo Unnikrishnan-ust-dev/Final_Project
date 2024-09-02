@@ -1,6 +1,7 @@
 package com.serviceharbor.auth.service;
 
 
+import com.serviceharbor.auth.dtos.UserResponseDto;
 import com.serviceharbor.auth.model.Role;
 import com.serviceharbor.auth.model.User;
 import com.serviceharbor.auth.repository.UserRepository;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -33,4 +35,21 @@ public class UserService {
 
         return users;
     }
+    public UserResponseDto findByEmail(String email) {
+        Optional<User> userOptional = userRepository.findByEmail(email);
+
+        if (userOptional.isPresent()) {
+            User user = userOptional.get();
+            // Convert User entity to UserResponse DTO
+            UserResponseDto userResponse = new UserResponseDto();
+            userResponse.setId(user.getId());
+            userResponse.setEmail(user.getEmail());
+            userResponse.setFirstName(user.getFirstName());
+            userResponse.setLastName(user.getLastName());
+            return userResponse;
+        } else {
+            throw new RuntimeException("User not found with email: " + email);
+        }
+    }
+
 }
