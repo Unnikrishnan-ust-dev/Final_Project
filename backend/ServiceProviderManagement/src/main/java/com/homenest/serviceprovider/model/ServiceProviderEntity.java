@@ -22,13 +22,13 @@ public class ServiceProviderEntity {
     @Column(name = "ID")
     private Long id;
 
-    @Column(name = "UserID", nullable = false)
+    @Column(name = "UserID")
     private Long userId;
 
-    @Column(name = "Rating", nullable = false)
+    @Column(name = "Rating")
     private double rating = 0;
 
-    @Column(name = "Location", nullable = false, length = 255)
+    @Column(name = "Location", length = 255)
     private String location;
 
     @CreationTimestamp
@@ -39,19 +39,19 @@ public class ServiceProviderEntity {
     @Column(name = "UpdatedAt")
     private Timestamp updatedAt;
 
-    @Column(name = "GOVT_ID", nullable = false, length = 50)
+    @Column(name = "GOVT_ID", length = 50)
     private String govtId;
 
-    @Column(name = "BANK_ACC_NO", nullable = false, length = 50)
+    @Column(name = "BANK_ACC_NO",  length = 50)
     private String bankAccountNumber;
 
-    @Column(name = "IFSC_CODE", nullable = false, length = 50)
+    @Column(name = "IFSC_CODE",  length = 50)
     private String ifscCode;
 
-    @Column(name = "BANK_NAME", nullable = false, length = 50)
+    @Column(name = "BANK_NAME",  length = 50)
     private String bankName;
 
-    @Column(name = "GOVT_ID_VERIFIED", nullable = false, length = 50)
+    @Column(name = "GOVT_ID_VERIFIED",  length = 50)
     private boolean govtIdVerified;
 
 }

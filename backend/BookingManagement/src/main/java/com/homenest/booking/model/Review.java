@@ -16,7 +16,7 @@ public class Review {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     @Column(name = "booking_id", nullable = false)
     private Integer bookingId;
@@ -30,7 +30,7 @@ public class Review {
     private String comment;
 
     @Column(name = "user_id", nullable = false)
-    private Integer userId;
+    private Long userId;
 
     @Column(name = "timestamp")
     private LocalDateTime timestamp;

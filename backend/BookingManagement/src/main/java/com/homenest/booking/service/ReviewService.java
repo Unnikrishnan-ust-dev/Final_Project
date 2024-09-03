@@ -1,7 +1,9 @@
 package com.homenest.booking.service;
 
 
+import com.homenest.booking.client.UserClient;
 import com.homenest.booking.model.Review;
+import com.homenest.booking.model.UserResponseDto;
 import com.homenest.booking.repository.ReviewRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,8 +18,16 @@ public class ReviewService {
     @Autowired
     private ReviewRepository reviewRepository;
 
+    @Autowired
+    private UserClient userClient;
+
     @Transactional
-    public Review addReview(Review review) {
+    public Review addReview(Review review, String userEmail) {
+
+        UserResponseDto userResponse = userClient.getUserByEmail(userEmail);
+
+        System.out.println(userResponse);
+        review.setUserId(userResponse.getId());
         // Additional business logic can be added here
         review.setCreatedAt(LocalDateTime.now());
         review.setUpdatedAt(LocalDateTime.now());
@@ -25,7 +35,7 @@ public class ReviewService {
     }
 
     @Transactional
-    public Review updateReview(Integer id, Review reviewDetails) {
+    public Review updateReview(Long id, Review reviewDetails) {
         Optional<Review> optionalReview = reviewRepository.findById(id);
         if (optionalReview.isPresent()) {
             Review review = optionalReview.get();
@@ -43,11 +53,11 @@ public class ReviewService {
     }
 
     @Transactional
-    public void deleteReview(Integer id) {
+    public void deleteReview(Long id) {
         reviewRepository.deleteById(id);
     }
 
-    public Optional<Review> getReviewById(Integer id) {
+    public Optional<Review> getReviewById(Long id) {
         return reviewRepository.findById(id);
     }
 

@@ -9,14 +9,14 @@ import com.homenest.serviceprovider.service.ServiceProviderService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/service-provider/service-provider-profile/")
+@RequestMapping("/service-provider")
 public class ServiceProviderController {
     @Autowired
     private ServiceProviderService serviceProviderService;
 
 //    get the service provider using service provider table id
-    @GetMapping("get-service-provider")
-    public ResponseEntity<ServiceProviderEntity> getServiceProviderById(long id) {
+    @GetMapping("/get-service-provider/{id}")
+    public ResponseEntity<ServiceProviderEntity> getServiceProviderById(@PathVariable long id) {
         ServiceProviderEntity serviceProvider = serviceProviderService.getServiceProviderById(id);
         if(serviceProvider != null) {
             return ResponseEntity.ok(serviceProvider);
@@ -25,18 +25,18 @@ public class ServiceProviderController {
         }
     }
 
-    @GetMapping("get-all-service-providers")
+    @GetMapping("/get-all-service-providers")
     public ResponseEntity<List<ServiceProviderEntity>> getAllServiceProvider() {
         return ResponseEntity.ok(serviceProviderService.getAllServiceProvider());
     }
 
-    @GetMapping("get-all-service-providers-by-govt-id-verified")
-    public ResponseEntity<List<ServiceProviderEntity>> getAllServiceProviderByGovtIdVerified(boolean status) {
+    @GetMapping("/get-all-service-providers-by-govt-id-verified/{status}")
+    public ResponseEntity<List<ServiceProviderEntity>> getAllServiceProviderByGovtIdVerified(@PathVariable boolean status) {
         return ResponseEntity.ok(serviceProviderService.getAllServiceProviderByGovtIdVerified(status));
     }
 
-    @GetMapping("get-service-provider-by-user-id")
-    public ResponseEntity<ServiceProviderEntity> getServiceProviderByUserId(long id) {
+    @GetMapping("/get-service-provider-by-user-id/{id}")
+    public ResponseEntity<ServiceProviderEntity> getServiceProviderByUserId(@PathVariable long id) {
         ServiceProviderEntity serviceProvider = serviceProviderService.getServiceProviderByUserId(id);
         if(serviceProvider != null) {
             return ResponseEntity.ok(serviceProvider);
@@ -46,9 +46,9 @@ public class ServiceProviderController {
     }
 
 //    method to create service provider
-    @PostMapping("create-service-provider")
-    public ResponseEntity<ServiceProviderEntity> createServiceProvider(ServiceProviderEntity serviceProvider) {
-        ServiceProviderEntity createdServiceProvider = serviceProviderService.createServiceProvider(serviceProvider);
+    @PostMapping("/create-service-provider")
+    public ResponseEntity<ServiceProviderEntity> createServiceProvider(ServiceProviderEntity serviceProvider, @RequestParam String userEmail) {
+        ServiceProviderEntity createdServiceProvider = serviceProviderService.createServiceProvider(serviceProvider, userEmail);
         if(createdServiceProvider != null) {
             return ResponseEntity.ok(createdServiceProvider);
         } else {
@@ -56,8 +56,8 @@ public class ServiceProviderController {
         }
     }
 
-    @PutMapping("update-service-provider/{id}")
-    public ResponseEntity<ServiceProviderEntity> updateServiceProvider(@PathVariable  long id, ServiceProviderEntity serviceProvider) {
+    @PutMapping("/update-service-provider/{id}")
+    public ResponseEntity<ServiceProviderEntity> updateServiceProvider(@PathVariable  long id, @RequestBody ServiceProviderEntity serviceProvider) {
         ServiceProviderEntity updatedServiceProvider = serviceProviderService.updateServiceProvider(serviceProvider);
         if(updatedServiceProvider != null) {
             return ResponseEntity.ok(updatedServiceProvider);
@@ -66,7 +66,7 @@ public class ServiceProviderController {
         }
     }
 
-    @DeleteMapping("delete-service-provider/{id}")
+    @DeleteMapping("/delete-service-provider/{id}")
     public ResponseEntity<ServiceProviderEntity> deleteServiceProviderById(@PathVariable long id) {
         ServiceProviderEntity deletedServiceProvider = serviceProviderService.deleteServiceProviderById(id);
         if(deletedServiceProvider != null) {

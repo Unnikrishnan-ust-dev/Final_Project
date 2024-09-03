@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/service-provider/services")
+@RequestMapping("/services")
 public class ServiceController {
 
     @Autowired
@@ -22,32 +22,33 @@ public class ServiceController {
         return ResponseEntity.ok(services);
     }
 
-    @GetMapping("/get-by-id")
-    public ResponseEntity<ServiceEntity> getServiceById(int id) {
+    @GetMapping("/get-by-id/{id}")
+    public ResponseEntity<ServiceEntity> getServiceById(@PathVariable int id) {
         ServiceEntity service = serviceModelService.getServiceById(id);
         return ResponseEntity.ok(service);
     }
 
-    @GetMapping("/get-by-category")
-    public ResponseEntity<List<ServiceEntity>> getServiceByCategory(String category) {
+    @GetMapping("/get-by-category/{category}")
+    public ResponseEntity<List<ServiceEntity>> getServiceByCategory(@PathVariable String category) {
         List<ServiceEntity> services = serviceModelService.getAllServiceByCategory(category);
         return ResponseEntity.ok(services);
     }
 
     @PostMapping("/add-service")
-    public ResponseEntity<ServiceEntity> addService(ServiceEntity service) {
-        ServiceEntity newService = serviceModelService.addService(service);
+    public ResponseEntity<ServiceEntity> addService(@RequestBody ServiceEntity service, @RequestParam String userEmail) {
+        ServiceEntity newService = serviceModelService.addService(service, userEmail);
         return ResponseEntity.ok(newService);
     }
 
+
     @PutMapping("/update-service")
-    public ResponseEntity<ServiceEntity> updateService(ServiceEntity service) {
+    public ResponseEntity<ServiceEntity> updateService(@RequestBody  ServiceEntity service) {
         ServiceEntity updatedService = serviceModelService.updateService(service);
         return ResponseEntity.ok(updatedService);
     }
 
-    @DeleteMapping("/delete-service")
-    public ResponseEntity<String> deleteService(int id) {
+    @DeleteMapping("/delete-service/{id}")
+    public ResponseEntity<String> deleteService(@PathVariable int id) {
         ServiceEntity service = serviceModelService.deleteService(id);
         if(service != null) {
             return ResponseEntity.ok("Service deleted successfully");
