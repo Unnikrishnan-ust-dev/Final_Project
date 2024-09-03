@@ -4,6 +4,7 @@ nav{
     justify-content: space-between;
     padding-top: 10px;
     padding-bottom: 10px;
+    position: relative;
 }
 
 .logo{
@@ -57,4 +58,11 @@ li{
     text-decoration: none;
     color: #6D31ED;
     font-weight: 700 !important;
+}
+.profile-card{
+    position: absolute;
+    width: 20vw;
+    height: 40vh;
+    top: 100%;
+    right: 0;
 }
