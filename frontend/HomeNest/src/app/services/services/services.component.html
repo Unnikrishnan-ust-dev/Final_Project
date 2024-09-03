@@ -23,21 +23,21 @@
             </div>
         </div>
     </div>
-    <h2 class="manrope bold">32 Results for plumber</h2>
+    <h2 class="manrope bold">{{services.length}} Results for plumber</h2>
     <div class="card-detail-container">
         <div class="service-cards" >
-            <app-card *ngFor="let service of services" [serviceTitle]="service.name" [servicePrice]="service.price"></app-card>
+            <app-card *ngFor="let service of services;index as i" [serviceTitle]="service.name" [servicePrice]="service.price" (click)="changeDetailService(i)"></app-card>
         </div>
-        <div class="service-detail">
+        <div *ngIf="clickedService!=null" class="service-detail">
             <img src={{serviceDetailImage}} alt="">
             <div>
                 <div>
-                    <h1>Plumber</h1>
+                    <h1>{{clickedService.name}}</h1>
                     <p>...</p>
                     <button class="btn-transparent">Save</button>
                     <button class="btn-solid" routerLink="/checkout">Book Now</button>
                 </div>
-                <h2>₹800-₹900</h2>
+                <h2>₹{{clickedService.price}}</h2>
                 <span>
                     <fa-icon></fa-icon>
                     <p>Laborum</p>
