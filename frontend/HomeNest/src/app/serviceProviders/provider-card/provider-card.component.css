@@ -1,0 +1,51 @@
+.card-contianer{
+    border: 1px solid #F5F1FE;
+    padding: 10px;
+    display: flex;
+    gap: 10px;
+    max-width: 50vw;
+    border-radius: 5px;
+}
+img{
+    height: 50px;
+    background-color: bisque;
+    border-radius: 50%;
+}
+h1{
+    font-size: 18px;
+}
+span{
+    font-size: 12px;
+}
+.tags{
+    display: flex;
+    width: 100%;
+    gap: 5px;
+}
+p{
+    font-size: 11px;
+    background-color: #F3F4F6;
+    border-radius: 5px;
+    width: max-content;
+    padding: 2px;
+}
+.card-body{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+button{
+    padding: 10px;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+}
+.btn-solid{
+    background-color: #6D31ED;
+    color: #fff;
+}
+.btn-transparent{
+    background-color: #F5F1FE;
+    color: #6D31ED;
+    margin-right: 10px;
+}

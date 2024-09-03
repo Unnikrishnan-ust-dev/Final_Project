@@ -1,0 +1,74 @@
+main{
+    padding: 10px;
+    margin: 30px 0;
+}
+.card-detail-container{
+    display: flex;
+    gap: 30px;
+}
+.service-cards{
+    width: 100%;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+.filters{
+    width: 100%;
+    display: flex;
+    gap: 20px;
+}
+.filter{
+    width: 100%;
+}
+.filter span h2{
+    display: inline-block;
+}
+main > h2{
+    font-size: 16px;
+}
+.filter > span{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.search input{
+    padding: 10px;
+    border: none;
+    outline: none;
+    background-color: #F3F4F6;
+    margin: 0 5px;
+    border-radius: 5px;
+    width: 30vw;
+}
+.filter select{
+    padding: 10px;
+    border: none;
+    outline: none;
+    background-color: #F3F4F6;
+    margin: 0 5px;
+    border-radius: 5px;
+}
+.service-detail{
+    width: 60%;
+    border: 1px solid #F3F4F6;
+    border-radius: 5px;
+}
+.service-detail > img{
+    width: 100%;
+    border-radius: 5px 5px 0 0;
+}
+button{
+    padding: 10px;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+}
+.btn-solid{
+    background-color: #6D31ED;
+    color: #fff;
+}
+.btn-transparent{
+    background-color: #F5F1FE;
+    color: #6D31ED;
+}

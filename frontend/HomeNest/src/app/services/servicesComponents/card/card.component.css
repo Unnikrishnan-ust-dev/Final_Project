@@ -1,0 +1,36 @@
+.second-part span{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+}
+.card-container{
+    border: 1px solid #F3F4F6;
+    border-radius: 5px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-width: 25vw;
+    margin: 0 10px;
+}
+.first-part{
+    width: 100%;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+.first-part h1{
+    font-family: 'man';
+}
+img{
+    height: 50px;
+    background-color: blue;
+    border-radius: 50%;
+}
+h1{
+    font-size: 18px;
+}
+p{
+    font-size: 16px;
+}

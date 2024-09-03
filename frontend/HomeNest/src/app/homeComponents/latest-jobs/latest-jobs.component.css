@@ -1,0 +1,56 @@
+section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 80px 130px;
+    width: 100%;
+    gap: 10px;
+}
+
+h1 {
+    font-size: 48px;
+    color: #6D31ED;
+}
+h2 {
+    font-size: 20px;
+}
+p{
+    font-size: 18px;
+}
+.card-slider{
+    display: flex;
+    gap: 30px;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+.job-card{
+    width: 30%;
+    padding: 20px;
+    border-radius: 5px;
+    border: 1px solid #F3F4F6;
+}
+.job-card>.first{
+    width: 100%;
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+.job-card>.second{
+    display: flex;
+    flex-direction: column;
+}
+.second span{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+button{
+    background-color: #6D31ED;
+    padding: 10px;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    margin-left: 5px;
+
+}
