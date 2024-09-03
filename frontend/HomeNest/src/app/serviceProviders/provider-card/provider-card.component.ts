@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-provider-card',
@@ -9,5 +9,6 @@ import { Component } from '@angular/core';
 })
 export class ProviderCardComponent {
 avatar: any = "/assets/profile-pic.png";
+@Input() providerName:string = "";
 
 }
