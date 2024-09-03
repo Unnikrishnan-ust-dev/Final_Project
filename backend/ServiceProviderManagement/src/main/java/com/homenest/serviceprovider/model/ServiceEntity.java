@@ -25,6 +25,9 @@ public class ServiceEntity {
   @Column(name = "Name", length = 100)
   private String name;
 
+  @Column(name = "Location")
+  private String location;
+
 
   @Column(name = "Category", length = 100)
   private String category;
