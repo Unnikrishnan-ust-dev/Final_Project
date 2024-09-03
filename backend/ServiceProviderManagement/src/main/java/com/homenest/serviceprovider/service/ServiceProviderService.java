@@ -25,6 +25,7 @@ public class ServiceProviderService {
 
         System.out.println(userResponse);
         serviceProvider.setUserId(userResponse.getId());
+        serviceProvider.setUsername(userResponse.getFirstName());
         return serviceProviderRepository.save(serviceProvider);
     }
 

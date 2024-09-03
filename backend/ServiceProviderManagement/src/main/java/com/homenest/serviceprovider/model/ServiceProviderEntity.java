@@ -28,7 +28,7 @@ public class ServiceProviderEntity {
     @Column(name = "Rating")
     private double rating = 0;
 
-    @Column(name = "Location", length = 255)
+    @Column(name = "Location")
     private String location;
 
     @CreationTimestamp
@@ -39,19 +39,22 @@ public class ServiceProviderEntity {
     @Column(name = "UpdatedAt")
     private Timestamp updatedAt;
 
-    @Column(name = "GOVT_ID", length = 50)
+    @Column(name= "username")
+    private String username;
+
+    @Column(name = "GOVT_ID")
     private String govtId;
 
-    @Column(name = "BANK_ACC_NO",  length = 50)
+    @Column(name = "BANK_ACC_NO")
     private String bankAccountNumber;
 
-    @Column(name = "IFSC_CODE",  length = 50)
+    @Column(name = "IFSC_CODE")
     private String ifscCode;
 
-    @Column(name = "BANK_NAME",  length = 50)
+    @Column(name = "BANK_NAME")
     private String bankName;
 
-    @Column(name = "GOVT_ID_VERIFIED",  length = 50)
+    @Column(name = "GOVT_ID_VERIFIED")
     private boolean govtIdVerified;
 
 }

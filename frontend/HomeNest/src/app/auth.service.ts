@@ -14,6 +14,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, map, Observable } from 'rxjs';
 import { RegisterModel } from './entity/user';
 import { LoginModel } from './entity/login.model';
+import { User } from './entity/userprofile.model';
 
  
 @Injectable({
@@ -44,6 +45,12 @@ export class AuthService {
         localStorage.setItem('JWT', "Bearer "+ response.token);
         localStorage.setItem('expiresIn', response.expiresIn);
         localStorage.setItem('email',loginData.email);
+        this.getAuthenticatedUser(response.token).subscribe({
+
+          next: (data)=>{
+            localStorage.setItem("user",JSON.stringify(data))
+          }
+        })
        
         this.loggedIn.next(true);
       })
@@ -63,9 +70,11 @@ export class AuthService {
     return localStorage.getItem('token');
   }
  
-  // checkUsername(username: string): Observable<any> {
-  //   return this.http.get<any>(`${this.apiUrl}/check-username`, {
-  //     params: { username }
-  //   });
-  // }
+  getAuthenticatedUser(token: string): Observable<User> {
+    return this.http.get<User>(`http://localhost:9999/getUser`,{
+      headers:{
+        "Authorization":`Bearer ${token}`
+      }
+    });
+  }
 }
