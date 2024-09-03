@@ -8,7 +8,7 @@ import { ProvidersComponent } from './serviceProviders/providers/providers.compo
 import { CheckoutComponent } from './checkout/checkout.component';
 
 export const routes: Routes = [
-    {path:"",component:HomeComponent},
+    {path: "",component:HomeComponent},
     {path: "login", component:LoginComponent},
     {path: "signup", component: RegistrationComponent},
     {path: "services", component: ServicesComponent},

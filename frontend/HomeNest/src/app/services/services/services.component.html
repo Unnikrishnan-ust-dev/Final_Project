@@ -25,11 +25,8 @@
     </div>
     <h2 class="manrope bold">32 Results for plumber</h2>
     <div class="card-detail-container">
-        <div class="service-cards">
-            <app-card></app-card>
-            <app-card></app-card>
-            <app-card></app-card>
-            <app-card></app-card>
+        <div class="service-cards" >
+            <app-card *ngFor="let service of services" [serviceTitle]="service.name" [servicePrice]="service.price"></app-card>
         </div>
         <div class="service-detail">
             <img src={{serviceDetailImage}} alt="">

@@ -32,3 +32,15 @@
   font-weight: 700;
   font-style: normal;
 }
+.alert {
+    position: relative;
+    
+    margin-bottom: 1rem;
+ 
+  }
+  .alert-danger {
+    color: #ff0015;
+    
+    
+  }
+  
