@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faHome, faLocation, faSave } from '@fortawesome/free-solid-svg-icons';
 
@@ -14,5 +14,8 @@ avatar: string = "/assets/profile-pic.png";
 homeIcon = faHome;
   locationIcon = faLocation;
   saveIcon = faSave;
+  @Input() serviceTitle:string = "";
+  @Input() servicePrice:number=0;
+
 
 }

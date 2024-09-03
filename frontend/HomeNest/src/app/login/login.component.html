@@ -2,11 +2,11 @@
     <div>
         <div class="left">
             <h1>Sign In</h1>
-            <form >
+            <form  (ngSubmit)="handleSubmit()">
                 <label for="email">Email</label>
-                <input type="email" name="email" id="email" placeholder="example.email@gmail.com">
+                <input type="email" name="email" id="email" placeholder="example.email@gmail.com" [(ngModel)]="loginData.email">
                 <label for="password">Password</label>
-                <input type="password" name="password" id="password" placeholder="Enter at least 8+ characters ">
+                <input type="password" name="password" id="password" placeholder="Enter at least 8+ characters " [(ngModel)]="loginData.password">
                 <div style="display: flex;justify-content: space-between;margin: 10px 0;">
                     <div class="remember-div">
                         <input type="checkbox" name="remember" id="remember">

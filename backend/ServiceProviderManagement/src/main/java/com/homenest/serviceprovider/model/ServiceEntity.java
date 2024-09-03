@@ -26,7 +26,6 @@ public class ServiceEntity {
   private String name;
 
 
-
   @Column(name = "Category", length = 100)
   private String category;
 
