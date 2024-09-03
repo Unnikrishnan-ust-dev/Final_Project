@@ -1,0 +1,80 @@
+<main>
+    <h1>Search Jobs</h1>
+    <div class="filters">
+        <div class="search">
+            <h2>Search</h2>
+            <input type="text" name="search" id="search">
+        </div>
+        <div class="filter">
+            <span><h2>Filters</h2><p>Clear filter</p></span>
+            <div>
+                <select name="location" id="location">
+                    <option value="">Location</option>
+                </select>
+                <select name="servicetype" id="servicetype">
+                    <option value="">Service Type</option>
+                </select>
+                <select name="exp" id="exp">
+                    <option value="">Experience Level</option>
+                </select>
+                <select name="company" id="company">
+                    <option value="">Company Type</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <h2 class="manrope bold">32 Results for plumber</h2>
+    <div class="card-detail-container">
+        <div class="service-cards">
+            <app-card></app-card>
+            <app-card></app-card>
+            <app-card></app-card>
+            <app-card></app-card>
+        </div>
+        <div class="service-detail">
+            <img src={{serviceDetailImage}} alt="">
+            <div>
+                <div>
+                    <h1>Plumber</h1>
+                    <p>...</p>
+                    <button class="btn-transparent">Save</button>
+                    <button class="btn-solid" routerLink="/checkout">Book Now</button>
+                </div>
+                <h2>₹800-₹900</h2>
+                <span>
+                    <fa-icon></fa-icon>
+                    <p>Laborum</p>
+                    <p> | </p>
+                    <fa-icon></fa-icon>
+                    <p>Tucson, AZ</p>
+                </span>
+                <span>
+                    <p>5 Year Experience</p>
+                    <p>Contract based</p>
+                    <p>Onsite</p>
+                </span>
+            </div>
+            <div>
+                <h1>Contact Provider</h1>
+                <img src={{avatar}} alt="">
+                <h1>Romy Murray</h1>
+                <p>Plumber</p>
+                <span><fa-icon></fa-icon>
+                    <p>Message</p>
+                </span>
+            </div>
+            <div>
+                <h1>Service Description</h1>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem lorem aliquam sed lacinia quis. Nibh
+                    dictumst vulputate odio pellentesque sit quis ac, sit ipsum. Sit rhoncus velit in sed massa arcu sit eu.
+                </p>
+                <h1>Service Includes</h1>
+                <ul>
+                    <li>Pipe Repair and Replacement</li>
+                    <li>Drainage System Inspection and Cleaning</li>
+                    <li>Fixture Installation and Repair</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</main>
