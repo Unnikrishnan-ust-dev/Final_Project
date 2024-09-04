@@ -7,6 +7,7 @@ export class Service {
     providerId: number;
     createdAt: Date;
     updatedAt: Date;
+    location: string;
   
     constructor(
       id: number,
@@ -16,7 +17,8 @@ export class Service {
       price: number,
       providerId: number,
       createdAt: Date,
-      updatedAt: Date
+      updatedAt: Date,
+      location: string
     ) {
       this.id = id;
       this.name = name;
@@ -26,6 +28,7 @@ export class Service {
       this.providerId = providerId;
       this.createdAt = createdAt;
       this.updatedAt = updatedAt;
+      this.location = location;
     }
   }
   

@@ -16,3 +16,9 @@ img{
 .details{
     display: flex;
 }
+h1{
+    font-size: 16px;
+}
+p{
+    font-size: 13px;
+}

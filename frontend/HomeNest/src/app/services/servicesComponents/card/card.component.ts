@@ -16,6 +16,7 @@ homeIcon = faHome;
   saveIcon = faSave;
   @Input() serviceTitle:string = "";
   @Input() servicePrice:number=0;
+  @Input() serviceCategory:string="";
 
 
 }
