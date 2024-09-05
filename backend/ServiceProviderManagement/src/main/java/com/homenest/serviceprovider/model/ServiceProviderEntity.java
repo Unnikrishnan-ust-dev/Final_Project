@@ -10,6 +10,8 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
 import java.sql.Timestamp;
+import java.util.HashSet;
+import java.util.Set;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -56,5 +58,17 @@ public class ServiceProviderEntity {
 
     @Column(name = "GOVT_ID_VERIFIED")
     private boolean govtIdVerified;
+
+    @Column(name = "IMAGE_URL")
+    private String imageUrl;
+
+    @Column(name = "skill")
+    private String skills;
+
+    @Column(name = "education")
+    private String education;
+
+
+
 
 }

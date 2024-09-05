@@ -40,7 +40,7 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests(auth -> auth
                         // Open endpoints
                         .requestMatchers("/auth/**").permitAll()
-                        .requestMatchers("/swagger-ui/**", "/v3/api-docs/**", "/by-email/**").permitAll()
+                        .requestMatchers("/swagger-ui/**", "/v3/api-docs/**").permitAll()
                         .requestMatchers("/**").permitAll()
 
                         // Booking endpoints
@@ -57,10 +57,7 @@ public class SecurityConfiguration {
 
                         // Review endpoints
                         .requestMatchers("/reviews/**").hasRole("USER")
-//                        .requestMatchers("/reviews/updateReview/**").hasRole("USER")
-//                        .requestMatchers("/reviews/deleteReview/**").hasRole("USER")
-//                        .requestMatchers("/reviews/getReview/**").hasAnyRole("USER", "ADMIN")
-//                        .requestMatchers("/reviews/getAllReviews").hasAnyRole("USER", "ADMIN")
+//
 
                         // User endpoints
                         .requestMatchers("/getUser").authenticated()
