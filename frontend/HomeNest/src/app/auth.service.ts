@@ -1,34 +1,23 @@
-// import { Injectable } from '@angular/core';
-
-// @Injectable({
-//   providedIn: 'root'
-// })
-// export class AuthService {
-
-//   constructor() { }
-// }
-
-
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, map, Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { RegisterModel } from './entity/user';
 import { LoginModel } from './entity/login.model';
 import { User } from './entity/userprofile.model';
-
  
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
  
-  private apiUrl = 'http://localhost:9999/auth';  // Your Spring Boot backend URL
+  private apiUrl = 'http://localhost:9999/auth';
+  user : User|null = null;
  
-  private loggedIn = new BehaviorSubject<boolean>(this.isAuthenticated());
- 
-  isLoggedIn = this.loggedIn.asObservable();
- 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    if(localStorage.getItem("user")!=null){
+      this.user = JSON.parse(localStorage.getItem("user")??"{}")
+    }
+  }
  
   isAuthenticated(): boolean {
     return !!localStorage.getItem('token');
@@ -45,35 +34,34 @@ export class AuthService {
         localStorage.setItem('JWT', "Bearer "+ response.token);
         localStorage.setItem('expiresIn', response.expiresIn);
         localStorage.setItem('email',loginData.email);
-        this.getAuthenticatedUser(response.token).subscribe({
-
+        this.getAuthenticatedUser().subscribe({
           next: (data)=>{
+            this.user = data;
             localStorage.setItem("user",JSON.stringify(data))
           }
-        })
-       
-        this.loggedIn.next(true);
+        });
       })
     );
   }
  
   // To log out the user
   logout() {
-    localStorage.removeItem('token');
     localStorage.removeItem('expiresIn');
-    localStorage.removeItem('email')
-    this.loggedIn.next(false);
+    localStorage.removeItem('email');
+    localStorage.removeItem('user');
+    localStorage.removeItem('JWT');
+    window.location.reload();
   }
  
   // To get the JWT token from local storage
   getToken(): string | null {
-    return localStorage.getItem('token');
+    return localStorage.getItem('JWT')?.split(" ")[1]??null;
   }
  
-  getAuthenticatedUser(token: string): Observable<User> {
+  getAuthenticatedUser(): Observable<User> {
     return this.http.get<User>(`http://localhost:9999/getUser`,{
       headers:{
-        "Authorization":`Bearer ${token}`
+        "Authorization":`Bearer ${this.getToken()}`
       }
     });
   }

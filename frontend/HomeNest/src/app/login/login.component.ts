@@ -27,11 +27,10 @@ loginData : LoginModel = {
 handleSubmit(){
 
   this.authService.login(this.loginData).subscribe({
-    next: (token)=>{
-      // window.location.reload();
-      let jwt = localStorage.getItem("token");
-      
-      this.router.navigate(['/']);
+    next: ()=>{
+      this.router.navigate(['/']).then(()=>{
+        window.location.reload();
+      })
     },
     error: (err)=>{
       console.log(err);

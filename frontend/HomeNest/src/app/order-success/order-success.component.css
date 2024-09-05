@@ -1,0 +1,100 @@
+.order-success-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: #f9f9f9;
+  text-align: center;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.success-icon {
+  font-size: 100px;
+  color: #4CAF50;
+  margin-bottom: 20px;
+  animation: pop 0.5s ease-out forwards;
+}
+
+@keyframes pop {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+h1 {
+  font-size: 2.5rem;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+p {
+  font-size: 1.2rem;
+  color: #666;
+  margin-bottom: 30px;
+  max-width: 500px;
+  line-height: 1.5;
+}
+
+.buttons-container {
+  display: flex;
+  gap: 20px;
+}
+
+button {
+  padding: 15px 30px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.home-button {
+  background-color: #4CAF50;
+  color: #fff;
+}
+
+.orders-button {
+  background-color: #2196F3;
+  color: #fff;
+}
+
+button:hover {
+  background-color: #333;
+  transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2rem;
+  }
+
+  p {
+    font-size: 1rem;
+  }
+
+  button {
+    padding: 12px 20px;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  p {
+    font-size: 0.9rem;
+  }
+
+  button {
+    padding: 10px 15px;
+    font-size: 0.8rem;
+  }
+}

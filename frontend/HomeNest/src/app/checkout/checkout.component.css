@@ -78,6 +78,10 @@ input[type="email"] {
     font-size: 16px;
 }
 
+#getLocationBtn{
+    transition: width 1s ease;
+}
+
 .checkout-btn:hover,
 #getLocationBtn:hover {
     background-color: #45a049;

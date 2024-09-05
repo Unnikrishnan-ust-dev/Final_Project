@@ -12,7 +12,7 @@
     flex-direction: column;
     width: 100%;
     min-width: 25vw;
-    margin: 0 10px;
+    margin: 10px;
 }
 .first-part{
     width: 100%;
@@ -25,7 +25,7 @@
 }
 img{
     height: 50px;
-    background-color: blue;
+    background-color: rgba(0, 0, 255, 0.235);
     border-radius: 50%;
 }
 h1{

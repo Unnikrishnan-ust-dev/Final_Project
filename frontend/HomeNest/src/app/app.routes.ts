@@ -8,6 +8,8 @@ import { ProvidersComponent } from './serviceProviders/providers/providers.compo
 import { CheckoutComponent } from './checkout/checkout.component';
 import { ServiceFormComponent } from './service-form/service-form.component';
 import { ServiceProviderProfileComponent } from './service-provider-profile/service-provider-profile.component';
+import { EditProfileComponent } from './edit-profile/edit-profile.component';
+import { OrderSuccessComponent } from './order-success/order-success.component';
 
 export const routes: Routes = [
     {path: "",component:HomeComponent},
@@ -17,7 +19,8 @@ export const routes: Routes = [
     {path: "providers", component: ProvidersComponent},
     {path: "service-form", component: ServiceFormComponent},
     {path: "service-provider-profile", component: ServiceProviderProfileComponent},
-    {path: "checkout", component: CheckoutComponent},
+    {path: "checkout/:id", component: CheckoutComponent},
+    {path: "edit-profile", component: EditProfileComponent},
+    {path: "order-success", component: OrderSuccessComponent},
     { path: '\*\*', component: NotFoundComponent }
-
 ];

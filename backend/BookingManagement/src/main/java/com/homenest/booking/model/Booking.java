@@ -43,6 +43,15 @@ public class Booking {
     @Column(name = "Longitude")
     private Double longitude;
 
+    @Column(name = "Address")
+    private String address;
+
+    @Column(name = "City")
+    private String city;
+
+    @Column(name = "PostalCode")
+    private Integer postal;
+
     @Column(name = "CreatedAt", updatable = false)
     @CreationTimestamp
     private Timestamp createdAt;
