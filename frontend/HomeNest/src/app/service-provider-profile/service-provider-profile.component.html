@@ -1,0 +1,73 @@
+<div class="profile-container">
+  <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+
+    <div class="form-group">
+      <label for="occupation">Occupation:</label>
+      <input id="occupation" type="text" formControlName="occupation" class="form-control" />
+    </div>
+
+    <div class="form-group">
+      <label for="location">Location:</label>
+      <input id="location" type="text" formControlName="location" class="form-control" />
+    </div>
+
+    <div class="form-group">
+      <label for="govtIdType">Government ID Type:</label>
+      <select id="govtIdType" formControlName="govtIdType" class="form-control">
+        <option value="" disabled selected>Select Government ID Type</option>
+        <option value="Aadhar Card">Aadhar Card</option>
+        <option value="PAN Card">PAN Card</option>
+        <option value="Driving License">Driving License</option>
+        <option value="Election Card">Election Card</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="govtId">Government ID:</label>
+      <input id="govtId" type="text" formControlName="govtId" class="form-control" />
+    </div>
+
+    <div class="form-group">
+      <label for="bankAccountNumber">Bank Account Number:</label>
+      <input id="bankAccountNumber" type="text" formControlName="bankAccountNumber" class="form-control" />
+    </div>
+
+    <div class="form-group">
+      <label for="ifscCode">IFSC Code:</label>
+      <input id="ifscCode" type="text" formControlName="ifscCode" class="form-control" />
+    </div>
+
+    <div class="form-group">
+      <label for="bankName">Bank Name:</label>
+      <input id="bankName" type="text" formControlName="bankName" class="form-control" />
+    </div>
+
+    <div class="form-group">
+      <label for="skills">Skills: </label>
+      <input type="text" id="skills" formControlName="skills" class="form-control" />
+    </div>
+
+    <!-- 
+      <div formArrayName="education" class="education-section">
+        <h3>Education</h3>
+        <div *ngFor="let edu of education.controls; let i=index" [formGroupName]="i" class="education-item">
+          <div class="form-group">
+            <label for="institute">Institute:</label>
+            <input id="institute" type="text" formControlName="institute" class="form-control" />
+          </div>
+          <div class="form-group">
+            <label for="degree">Degree:</label>
+            <input id="degree" type="text" formControlName="degree" class="form-control" />
+          </div>
+          <div class="form-group">
+            <label for="years">Years:</label>
+            <input id="years" type="text" formControlName="years" class="form-control" />
+          </div>
+          <button type="button" (click)="removeEducation(i)">Remove Education</button>
+        </div>
+        <button type="button" (click)="addEducation()">Add Education</button>
+      </div> -->
+
+    <button type="submit" class="btn btn-primary" [disabled]="!profileForm.valid">Save Profile</button>
+  </form>
+</div>

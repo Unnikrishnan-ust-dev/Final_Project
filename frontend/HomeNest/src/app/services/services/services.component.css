@@ -4,6 +4,7 @@ main{
 .card-detail-container{
     display: flex;
     gap: 30px;
+    height: auto;
 }
 .service-cards{
     width: 30vw;

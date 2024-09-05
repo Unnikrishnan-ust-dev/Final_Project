@@ -17,6 +17,7 @@ homeIcon = faHome;
   @Input() serviceTitle:string = "";
   @Input() servicePrice:number=0;
   @Input() serviceCategory:string="";
+  @Input() serviceLocation:string="";
 
-
+  
 }

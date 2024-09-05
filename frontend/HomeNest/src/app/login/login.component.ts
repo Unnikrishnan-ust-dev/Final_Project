@@ -28,12 +28,11 @@ handleSubmit(){
 
   this.authService.login(this.loginData).subscribe({
     next: ()=>{
-      this.router.navigate(['/']).then(()=>{
-        window.location.reload();
-      })
+      this.router.navigate(['/']);
     },
     error: (err)=>{
       console.log(err);
+      alert("Error while logging in");
     }
   })
 

@@ -2,9 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {faChevronDown} from '@fortawesome/free-solid-svg-icons';
 import {faBell} from "@fortawesome/free-regular-svg-icons";
-import { ActivatedRoute, Route, Router, RouterLink } from '@angular/router';
+import { RouterLink } from '@angular/router';
 import { NgIf } from '@angular/common';
 import { ProfileCardComponent } from "../../profile-card/profile-card.component";
+import { AuthService } from '../../auth.service';
+import { User } from '../../entity/userprofile.model';
 
 @Component({
   selector: 'app-navbar',
@@ -14,13 +16,11 @@ import { ProfileCardComponent } from "../../profile-card/profile-card.component"
   styleUrl: './navbar.component.css'
 })
 export class NavbarComponent implements OnInit{
-  authorized : boolean = false;
+  constructor(private authService: AuthService){}
+  user: User|null = null;
 
   ngOnInit(): void {
-    const token = localStorage.getItem("JWT");
-    if(token?.startsWith("Bearer")&&token.length>10){
-      this.authorized=true;
-    }
+    this.user = this.authService.user;
   }
 
   downArrow = faChevronDown;
@@ -30,11 +30,7 @@ export class NavbarComponent implements OnInit{
   profileDropDownPressed : boolean = false;
 
   openProfile(){
-    if(this.profileDropDownPressed){
-      this.profileDropDownPressed = false;
-    }else{
-    this.profileDropDownPressed =true;
-    }
+    this.profileDropDownPressed = !this.profileDropDownPressed;
   }
   
 }

@@ -21,7 +21,6 @@ export class ProfileCardComponent {
 
   logOut() {
     this.authService.logout();
-    
   }
 
 }

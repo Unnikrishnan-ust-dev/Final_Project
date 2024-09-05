@@ -7,7 +7,12 @@
         </span>
     </div>
     <div style="cursor: pointer;" class="section">
-        <p routerLink="/edit-profile">Edit Profile</p>
+        @if (user?.role=="USER") {
+            <p routerLink="/edit-profile">Edit Profile</p>
+        }@else {
+            <p routerLink="/edit-profile">Edit Basic Profile</p>
+            <p routerLink="/service-provider-profile">Edit Extended Profile</p>
+        }
     </div>
     <div (click)="logOut()" style="cursor: pointer;" class="section">
         <p>Sign Out</p>

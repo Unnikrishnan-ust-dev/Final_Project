@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CardComponent } from "../servicesComponents/card/card.component";
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { Router, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { ServiceManagementService } from '../../servicemanagement.service';
 import { Service } from '../../entity/services.model';
 import { NgFor, NgIf } from '@angular/common';
@@ -22,7 +22,8 @@ export class ServicesComponent implements OnInit {
   constructor(
     private serviceManagementService: ServiceManagementService,
     private providerManagementService: ServiceProviderManagementService,
-    private router: Router
+    private router: Router,
+    private route : ActivatedRoute
   ) { }
 
   serviceDetailImage: string = "/assets/serviceDetail.png";
@@ -76,6 +77,10 @@ export class ServicesComponent implements OnInit {
           this.serviceProvider = data;
         })
       }
+    });
+
+    this.route.queryParamMap.subscribe((params) => {
+      this.filterData.category = params.get("category")??"";
     });
   }
 

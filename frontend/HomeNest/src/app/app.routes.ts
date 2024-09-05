@@ -8,16 +8,22 @@ import { ProvidersComponent } from './serviceProviders/providers/providers.compo
 import { CheckoutComponent } from './checkout/checkout.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { OrderSuccessComponent } from './order-success/order-success.component';
+import { ServiceFormComponent } from './service-form/service-form.component';
+import { ServiceProviderProfileComponent } from './service-provider-profile/service-provider-profile.component';
+import { AuthGuardService } from './auth-guard.service';
+import { UserAuthGaurdService } from './user-auth-gaurd.service';
+import { CheckIsLoggedInGaurdService } from './check-is-logged-in-gaurd.service';
 
 export const routes: Routes = [
     {path: "",component:HomeComponent},
-    {path: "login", component:LoginComponent},
-    {path: "signup", component: RegistrationComponent},
-    {path: "services", component: ServicesComponent},
-    {path: "providers", component: ProvidersComponent},
-    {path: "checkout/:id", component: CheckoutComponent},
+    {path: "login", component:LoginComponent, canActivate: [CheckIsLoggedInGaurdService]},
+    {path: "signup", component: RegistrationComponent, canActivate: [CheckIsLoggedInGaurdService]},
+    {path: "services", component: ServicesComponent, canActivate: [UserAuthGaurdService]},
+    {path: "providers", component: ProvidersComponent, canActivate: [UserAuthGaurdService]},
+    {path: "checkout/:id", component: CheckoutComponent, canActivate: [UserAuthGaurdService]},
     {path: "edit-profile", component: EditProfileComponent},
-    {path: "order-success", component: OrderSuccessComponent},
-
+    {path: "order-success", component: OrderSuccessComponent, canActivate: [UserAuthGaurdService]},
+    {path: "service-form", component: ServiceFormComponent, canActivate:[AuthGuardService]},
+    {path: "service-provider-profile", component: ServiceProviderProfileComponent, canActivate:[AuthGuardService]},
     { path: '\*\*', component: NotFoundComponent }
 ];

@@ -26,29 +26,29 @@
     <h2 class="manrope bold">{{tempServices.length}} Results found</h2>
     <div class="card-detail-container">
         <div class="service-cards" >
-            <app-card *ngFor="let service of tempServices;index as i" [serviceTitle]="service.name" [servicePrice]="service.price" (click)="changeDetailService(service.id)" [serviceCategory]="service.category"></app-card>
+            <app-card [serviceLocation]="service.location" *ngFor="let service of tempServices;index as i" [serviceTitle]="service.name" [servicePrice]="service.price" (click)="changeDetailService(service.id)" [serviceCategory]="service.category"></app-card>
         </div>
         <div *ngIf="clickedService!=null" class="service-detail">
             <img src={{serviceDetailImage}} alt="">
             <div>
                 <div>
                     <h1>{{clickedService.name}}</h1>
-                    <p>...</p>
-                    <button class="btn-transparent">Save</button>
-                    <button class="btn-solid" (click)="bookService(clickedService.id,clickedService.name,clickedService.price)">Book Now</button>
+                    <!-- <p>...</p> -->
+                    <!-- <button class="btn-transparent">Save</button> -->
+                    <button style="padding: 10px;" class="btn-solid" (click)="bookService(clickedService.id,clickedService.name,clickedService.price)">Book Now</button>
                 </div>
                 <h2>₹{{clickedService.price}}</h2>
                 <span>
-                    <fa-icon></fa-icon>
-                    <p>Laborum</p>
-                    <p> | </p>
-                    <fa-icon></fa-icon>
+                    <!-- <fa-icon></fa-icon> -->
+                    <!-- <p>Laborum</p> -->
+                    <!-- <p> | </p> -->
+                    <!-- <fa-icon></fa-icon> -->
                     <p>{{clickedService.location}}</p>
                 </span>
                 <span>
-                    <p>5 Year Experience</p>
-                    <p>Contract based</p>
-                    <p>Onsite</p>
+                    <!-- <p>5 Year Experience</p> -->
+                    <!-- <p>Contract based</p> -->
+                    <p>{{clickedService.category}}</p>
                 </span>
             </div>
             <div class="contact-provider">
@@ -62,7 +62,7 @@
                     <button class="btn-transparent"><fa-icon [icon]="messageIcon"></fa-icon> Message</button>
                 </div>
             </div>
-            <div>
+            <!-- <div>
                 <h1>Service Description</h1>
                 <p>{{clickedService.description}}
                 </p>
@@ -72,7 +72,7 @@
                     <li>Drainage System Inspection and Cleaning</li>
                     <li>Fixture Installation and Repair</li>
                 </ul>
-            </div>
+            </div> -->
         </div>
     </div>
 </main>

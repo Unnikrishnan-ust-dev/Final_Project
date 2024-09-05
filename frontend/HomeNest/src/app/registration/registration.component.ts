@@ -35,19 +35,23 @@ export class RegistrationComponent {
 
     if(this.registerData.password != this.confirmPassword){
         alert("Password Mismatch");
-        return
+        return;
     }
-    this.authService.register(this.registerData).subscribe({
-      next: (data)=>{
-  
-        console.log(data);
-        // window.location.reload();
-        this.router.navigate(['/login']);
-      },
-      error: (err)=>{
-        console.log(err);
-      }
-    })
+    if(this.registerData.role=="USER"||this.registerData.role=="SERVICE_PROVIDER"){
+      this.authService.register(this.registerData).subscribe({
+        next: (data)=>{
+          this.router.navigate(['/login']);
+        },
+        error: (err)=>{
+          console.log(err);
+          alert("Error while registering user");
+        }
+      })
+    }else{
+      alert("Invalid Role. You can only specify USER or SERVICE_PROVIDER");
+      return;
+    }
+    
 }
 
 }

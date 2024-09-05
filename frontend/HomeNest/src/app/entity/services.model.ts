@@ -5,8 +5,8 @@ export class Service {
     description: string;
     price: number;
     providerId: number;
-    createdAt: Date;
-    updatedAt: Date;
+    createdAt?: Date;
+    updatedAt?: Date;
     location: string;
   
     constructor(

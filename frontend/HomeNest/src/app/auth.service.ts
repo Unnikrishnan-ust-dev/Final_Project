@@ -31,9 +31,9 @@ export class AuthService {
     return this.http.post<{ token: string, expiresIn:string}>(`${this.apiUrl}/login`, loginData).pipe(
       map(response => {
         // Store the JWT token in local storage
-        localStorage.setItem('JWT', "Bearer "+ response.token);
         localStorage.setItem('expiresIn', response.expiresIn);
         localStorage.setItem('email',loginData.email);
+        localStorage.setItem('token',response.token);
         this.getAuthenticatedUser().subscribe({
           next: (data)=>{
             this.user = data;
@@ -46,16 +46,17 @@ export class AuthService {
  
   // To log out the user
   logout() {
+    this.user = null;
     localStorage.removeItem('expiresIn');
     localStorage.removeItem('email');
     localStorage.removeItem('user');
-    localStorage.removeItem('JWT');
+    localStorage.removeItem('token');
     window.location.reload();
   }
  
   // To get the JWT token from local storage
   getToken(): string | null {
-    return localStorage.getItem('JWT')?.split(" ")[1]??null;
+    return localStorage.getItem('token')??null;
   }
  
   getAuthenticatedUser(): Observable<User> {

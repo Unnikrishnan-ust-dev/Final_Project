@@ -1,20 +1,20 @@
 <section>
     <h1>Explore more services</h1>
-    <form>
+    <!-- <form>
         <input type="text" name="searchQuery" id="searchQuery" placeholder="Search for services">
         <select name="location" id="location">
             <option value="">Location</option>
         </select>
         <button>Search</button>
-    </form>
+    </form> -->
     <div class="card-slider">
         <fa-icon [icon]="leftArrow"></fa-icon>
-        <div [style.backgroundColor]="card.cardColor" *ngFor="let card of categories">
-            <div [style.backgroundColor]="card.iconBg">
+        <div style="background-color: #F5F1FE;cursor: pointer;" *ngFor="let card of categories" (click)="handleClick(card)">
+            <div style="background-color: #6D31ED;">
                 <fa-icon [icon]="dollarIcon" style="color:white;" size="xl"></fa-icon>
             </div>
-            <h2>{{card.title}}</h2>
-            <p>{{card.jobCount}} Jobs</p>
+            <h2>{{card}}</h2>
+            <!-- <p>{{card.jobCount}} Jobs</p> -->
         </div>
         <fa-icon [icon]="rightArrow"></fa-icon>
     </div>

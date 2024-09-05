@@ -2,22 +2,26 @@
     <img class="logo" src={{logoLink}} alt="logo">
     <ul class="nav-links manrope-regular">
         <li routerLink="/">Home</li>
-        <li routerLink="/services">All Services</li>
-        <li routerLink="/providers">Providers</li>
+        @if (user?.role=="SERVICE_PROVIDER") {
+            <li routerLink="/service-form">Create Service</li>
+        }@else {
+            <li routerLink="/services">All Services</li>
+            <li routerLink="/providers">Providers</li>
+        }
         <li>About</li>
         <li>Contact</li>
     </ul>
-    <div *ngIf="authorized" class="profile-icons">
+    <div *ngIf="user!=null" class="profile-icons">
         <fa-icon class="notification-icon" [icon]="notificationIcon" style="color: #9095A1;"></fa-icon>
         <div>
             <div style="background-color: rgba(137, 43, 226, 0.511); border-radius: 50%;"><img class="avatar-img" src={{avatarLink}} alt="profile-pic"></div>
-            <div  (click)="openProfile()" ><fa-icon class="down-arrow" size="lg" [icon]="downArrow" style="color: #9095A1;"></fa-icon></div>
+            <div  (click)="openProfile()" ><fa-icon class="down-arrow" size="lg" [icon]="downArrow" style="color: #9095A1;cursor: pointer;"></fa-icon></div>
         </div>
     </div>
     <div *ngIf="profileDropDownPressed" class="profile-card">
         <app-profile-card></app-profile-card>
     </div>
-    <div *ngIf="!authorized" class="profile-icons">
+    <div *ngIf="user==null" class="profile-icons">
         <a class="manrope-regular" routerLink="/signup">SignUp</a>
         <button routerLink="/login">Login</button>
     </div>

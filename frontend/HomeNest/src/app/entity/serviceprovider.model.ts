@@ -1,30 +1,30 @@
 export class ServiceProvider {
-    id?: number;  // Corresponds to Long in Java, optional
-    userId?: number;  // Corresponds to Long in Java, optional
-    rating: number;
-    location?: string;
+    id: number;  // Corresponds to Long in Java, optional
+    userId: number;  // Corresponds to Long in Java, optional
+    rating?: number;
+    location: string;
     createdAt?: Date;  // Using Date for timestamps
     updatedAt?: Date;  // Using Date for timestamps
-    govtId?: string;
+    govtId: string;
     bankAccountNumber?: string;
-    ifscCode?: string;
-    bankName?: string;
-    govtIdVerified: boolean;
+    ifscCode: string;
+    bankName: string;
+    govtIdVerified?: boolean;
     username: string;
   
     constructor(
         username: string,
-      id?: number,
-      userId?: number,
-      rating: number = 0,
-      location?: string,
+      id: number,
+      userId: number,
+      location: string,
+      govtId: string,
+      bankAccountNumber: string,
+      ifscCode: string,
+      bankName: string,
+      govtIdVerified?: boolean,
+      rating?: number,
       createdAt?: Date,
       updatedAt?: Date,
-      govtId?: string,
-      bankAccountNumber?: string,
-      ifscCode?: string,
-      bankName?: string,
-      govtIdVerified: boolean = false
       
 
     ) {

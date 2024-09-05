@@ -1,6 +1,6 @@
 <main>
     <h1>Search Service Providers</h1>
-    <div class="filters">
+    <!-- <div class="filters">
         <div class="search">
             <h2>Search</h2>
             <input type="text" name="search" id="search">
@@ -25,18 +25,9 @@
                 </select>
             </div>
         </div>
-    </div>
-    <h2 class="manrope bold">32 Results for plumber</h2>
+    </div> -->
+    <h2 class="manrope bold">{{serviceProviders.length}} Service Providers</h2>
     <div class="service-cards">
         <app-provider-card *ngFor="let providers of serviceProviders" [providerName] = "providers.username"></app-provider-card>
-        <!-- <app-provider-card></app-provider-card>
-        <app-provider-card></app-provider-card>
-        <app-provider-card></app-provider-card>
-        <app-provider-card></app-provider-card>
-        <app-provider-card></app-provider-card>
-        <app-provider-card></app-provider-card>
-        <app-provider-card></app-provider-card>
-        <app-provider-card></app-provider-card>
-        <app-provider-card></app-provider-card> -->
     </div>
 </main>
