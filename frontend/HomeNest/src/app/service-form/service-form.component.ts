@@ -1,12 +1,9 @@
 import { NgIf } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
-<<<<<<< HEAD
 import { ServiceManagementService } from '../servicemanagement.service';
 import { Service } from '../entity/services.model';
 import { AuthService } from '../auth.service';
-=======
->>>>>>> a457b48c56f15957796c95d9d046719853422926
 
 @Component({
   selector: 'app-service-form',
@@ -17,7 +14,6 @@ import { AuthService } from '../auth.service';
 })
 export class ServiceFormComponent {
 
-<<<<<<< HEAD
   constructor(private serviceManagementService: ServiceManagementService, private authService: AuthService) { }
 
   serviceData: Service = {
@@ -51,11 +47,5 @@ export class ServiceFormComponent {
         }
       }
     )
-=======
-  onSubmit(form: any): void {
-    if (form.valid) {  
-      console.log('Form Data:', form.value);
-    }
->>>>>>> a457b48c56f15957796c95d9d046719853422926
   }
 }

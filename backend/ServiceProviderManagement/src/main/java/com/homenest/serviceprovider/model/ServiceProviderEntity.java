@@ -47,6 +47,9 @@ public class ServiceProviderEntity {
     @Column(name = "GOVT_ID")
     private String govtId;
 
+    @Column(name = "GOVT_ID_TYPE")
+    private String govtIdType;
+
     @Column(name = "BANK_ACC_NO")
     private String bankAccountNumber;
 
@@ -68,7 +71,7 @@ public class ServiceProviderEntity {
     @Column(name = "education")
     private String education;
 
-
-
+    @Column(name = "occupation")
+    private String occupation;
 
 }

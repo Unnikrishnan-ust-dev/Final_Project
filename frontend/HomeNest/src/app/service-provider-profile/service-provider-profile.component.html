@@ -47,26 +47,10 @@
       <input type="text" id="skills" formControlName="skills" class="form-control" />
     </div>
 
-    <!-- 
-      <div formArrayName="education" class="education-section">
-        <h3>Education</h3>
-        <div *ngFor="let edu of education.controls; let i=index" [formGroupName]="i" class="education-item">
-          <div class="form-group">
-            <label for="institute">Institute:</label>
-            <input id="institute" type="text" formControlName="institute" class="form-control" />
-          </div>
-          <div class="form-group">
-            <label for="degree">Degree:</label>
-            <input id="degree" type="text" formControlName="degree" class="form-control" />
-          </div>
-          <div class="form-group">
-            <label for="years">Years:</label>
-            <input id="years" type="text" formControlName="years" class="form-control" />
-          </div>
-          <button type="button" (click)="removeEducation(i)">Remove Education</button>
-        </div>
-        <button type="button" (click)="addEducation()">Add Education</button>
-      </div> -->
+    <div class="form-group">
+      <label for="education">Education: </label>
+      <input type="text" id="education" formControlName="education" class="form-control" />
+    </div>
 
     <button type="submit" class="btn btn-primary" [disabled]="!profileForm.valid">Save Profile</button>
   </form>
