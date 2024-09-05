@@ -1,6 +1,10 @@
 <div class="container">
     <h2 class="form-title">Add New Service</h2>
+<<<<<<< HEAD
     <form (ngSubmit)="handleSubmit()">
+=======
+    <form (ngSubmit)="onSubmit(serviceForm)" #serviceForm="ngForm">
+>>>>>>> a457b48c56f15957796c95d9d046719853422926
       <div class="form-group">
         <label for="name">Service Name:</label>
         <input
@@ -9,12 +13,20 @@
           name="name"
           class="form-control"
           placeholder="Enter service name"
+<<<<<<< HEAD
           [(ngModel)]="serviceData.name"
+=======
+          ngModel
+>>>>>>> a457b48c56f15957796c95d9d046719853422926
           required
         />
        
       </div>
+<<<<<<< HEAD
  
+=======
+  
+>>>>>>> a457b48c56f15957796c95d9d046719853422926
       <div class="form-group">
         <label for="location">Location:</label>
         <input
@@ -23,12 +35,21 @@
           name="location"
           class="form-control"
           placeholder="Enter location"
+<<<<<<< HEAD
           [(ngModel)]="serviceData.location"
           required
         />
      
       </div>
  
+=======
+          ngModel
+          required
+        />
+      
+      </div>
+  
+>>>>>>> a457b48c56f15957796c95d9d046719853422926
       <div class="form-group">
         <label for="category">Category:</label>
         <input
@@ -37,12 +58,21 @@
           name="category"
           class="form-control"
           placeholder="Enter category"
+<<<<<<< HEAD
           [(ngModel)]="serviceData.category"
           required
         />
      
       </div>
  
+=======
+          ngModel
+          required
+        />
+      
+      </div>
+  
+>>>>>>> a457b48c56f15957796c95d9d046719853422926
       <div class="form-group">
         <label for="description">Description:</label>
         <textarea
@@ -51,10 +81,17 @@
           class="form-control"
           rows="3"
           placeholder="Enter description"
+<<<<<<< HEAD
           [(ngModel)]="serviceData.description"
         ></textarea>
       </div>
  
+=======
+          ngModel
+        ></textarea>
+      </div>
+  
+>>>>>>> a457b48c56f15957796c95d9d046719853422926
       <div class="form-group">
         <label for="price">Price:</label>
         <input
@@ -63,12 +100,25 @@
           name="price"
           class="form-control"
           placeholder="Enter price"
+<<<<<<< HEAD
           [(ngModel)]="serviceData.price"
+=======
+          ngModel
+>>>>>>> a457b48c56f15957796c95d9d046719853422926
           required
           min="0"
         />
       </div>
+<<<<<<< HEAD
+=======
+  
+     
+>>>>>>> a457b48c56f15957796c95d9d046719853422926
    
       <button type="submit" class="btn-submit" >Add Service</button>
     </form>
   </div>
+<<<<<<< HEAD
+=======
+  
+>>>>>>> a457b48c56f15957796c95d9d046719853422926

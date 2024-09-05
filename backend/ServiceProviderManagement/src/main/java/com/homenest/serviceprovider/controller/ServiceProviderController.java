@@ -47,7 +47,7 @@ public class ServiceProviderController {
 
 //    method to create service provider
     @PostMapping("/create-service-provider")
-    public ResponseEntity<ServiceProviderEntity> createServiceProvider(ServiceProviderEntity serviceProvider, @RequestParam String userEmail) {
+    public ResponseEntity<ServiceProviderEntity> createServiceProvider(@RequestBody ServiceProviderEntity serviceProvider, @RequestParam String userEmail) {
         ServiceProviderEntity createdServiceProvider = serviceProviderService.createServiceProvider(serviceProvider, userEmail);
         if(createdServiceProvider != null) {
             return ResponseEntity.ok(createdServiceProvider);
