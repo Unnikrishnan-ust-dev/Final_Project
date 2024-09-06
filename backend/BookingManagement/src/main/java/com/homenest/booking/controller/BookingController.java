@@ -29,6 +29,18 @@ public class BookingController {
         return booking.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
+    @GetMapping("/get-all-orders-by-user-id/{id}")
+    public ResponseEntity<List<Booking>> getBookingsByUserId(@PathVariable long id){
+        List<Booking> bookings = bookingService.getBookingsByUserId(id);
+        return ResponseEntity.ok(bookings);
+    }
+
+    @GetMapping("/get-all-orders-by-provider-id/{id}")
+    public ResponseEntity<List<Booking>> getBookingsByProviderId(@PathVariable long id){
+        List<Booking> bookings = bookingService.getBookingsByProviderId(id);
+        return ResponseEntity.ok(bookings);
+    }
+
     // Get all bookings (Admin only)
     @GetMapping("/getAll")
     public ResponseEntity<List<Booking>> getAllBookings() {

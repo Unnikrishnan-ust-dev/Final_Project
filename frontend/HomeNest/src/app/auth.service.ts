@@ -66,4 +66,12 @@ export class AuthService {
       }
     });
   }
+
+  getUserByUserId(id: number): Observable<User> {
+    return this.http.get<User>(`http://localhost:9999/getUserByUserId/${id}`,{
+      headers:{
+        "Authorization":`Bearer ${this.getToken()}`
+      }
+    });
+  }
 }

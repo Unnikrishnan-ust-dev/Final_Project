@@ -31,6 +31,18 @@ export class BookingService {
     return this.http.get<Booking[]>(url);
   }
 
+  // Get all bookings by user id
+  getBookingsByUserId(userId: number): Observable<Booking[]> {
+    const url = `${this.baseUrl}/get-all-orders-by-user-id/${userId}`;
+    return this.http.get<Booking[]>(url);
+  }
+
+  // Get all bookings by provider user id
+  getBookingsByProviderUserId(userId: number): Observable<Booking[]> {
+    const url = `${this.baseUrl}/get-all-orders-by-provider-id/${userId}`;
+    return this.http.get<Booking[]>(url);
+  }
+
   // Cancel a booking
   cancelBooking(id: number): Observable<void> {
     const url = `${this.baseUrl}/deleteBooking/${id}`;

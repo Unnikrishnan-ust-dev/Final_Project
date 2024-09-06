@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NgFor, NgIf } from '@angular/common';
 import { BookingService } from '../booking.service';
+import { AuthService } from '../auth.service';
+import { User } from '../entity/userprofile.model';
  
  
 @Component({
@@ -19,19 +21,24 @@ export class OrdersComponent implements OnInit {
   selectedLocation: string = '';
   selectedPaymentStatus: string = '';
   selectedOrderStatus: string = '';
- 
-  constructor(private orderService: BookingService) { }
+  user: User|null = null;
+  constructor(private orderService: BookingService,private authService: AuthService) { }
  
   ngOnInit(): void {
+    this.user = this.authService.user;
     this.loadOrders();
   }
  
   loadOrders(): void {
-    this.orderService.getAllBookings().subscribe(data => {
-      this.orders = data;
-      // Apply filters if needed
-      this.applyFilters();
-    });
+    if(this.user!=null&&this.user.role=="USER"){
+      this.orderService.getBookingsByUserId(this.user?.id).subscribe(data => {
+        this.orders = data;
+      });
+    }else if(this.user!=null&&this.user.role=="SERVICE_PROVIDER"){
+      this.orderService.getBookingsByProviderUserId(this.user?.id).subscribe(data => {
+        this.orders = data;
+      });
+    }
   }
  
   selectOrder(orderId: number): void {

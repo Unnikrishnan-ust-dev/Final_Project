@@ -5,6 +5,7 @@ import com.serviceharbor.auth.model.User;
 
 
 import com.serviceharbor.auth.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -12,9 +13,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-//@RequestMapping("/users")
 @RestController
 public class UserController {
+    @Autowired
     private final UserService userService;
 
     public UserController(UserService userService) {
@@ -28,6 +29,12 @@ public class UserController {
         User currentUser = (User) authentication.getPrincipal();
 
         return ResponseEntity.ok(currentUser);
+    }
+
+    @GetMapping("/getUserByUserId/{id}")
+    public ResponseEntity<User> getUserByUserId(@PathVariable long id){
+        User user = userService.findById(id);
+        return ResponseEntity.ok(user);
     }
 
     @GetMapping("/getAllUsers")

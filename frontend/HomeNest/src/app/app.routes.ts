@@ -26,6 +26,7 @@ export const routes: Routes = [
     {path: "order-success", component: OrderSuccessComponent, canActivate: [UserAuthGaurdService]},
     {path: "service-form", component: ServiceFormComponent, canActivate:[AuthGuardService]},
     {path: "service-provider-profile", component: ServiceProviderProfileComponent, canActivate:[AuthGuardService]},
-    {path: "order-page-user", component: OrdersComponent},
+    {path: "order-page-user", component: OrdersComponent, canActivate: [UserAuthGaurdService]},
+    {path: "order-page-provider", component: OrdersComponent, canActivate:[AuthGuardService]},
     { path: '\*\*', component: NotFoundComponent }
 ];

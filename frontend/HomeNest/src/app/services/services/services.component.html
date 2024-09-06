@@ -56,8 +56,8 @@
                 <div>
                     <img src={{avatar}} alt="">
                     <div>
-                        <h1 class="manrope bold">{{serviceProvider?.username}}</h1>
-                        <p class="manrope regular">{{serviceProvider?.location}}</p>
+                        <h1 class="manrope bold">{{serviceProviderBasicProfile?.firstName}} {{serviceProviderBasicProfile?.lastName}}</h1>
+                        <p class="manrope regular">{{serviceProviderBasicProfile?.email}}</p>
                     </div>
                     <button class="btn-transparent"><fa-icon [icon]="messageIcon"></fa-icon> Message</button>
                 </div>

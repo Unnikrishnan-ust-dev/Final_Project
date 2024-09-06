@@ -14,6 +14,7 @@ export class Booking {
     postal?: number;
     createdAt: string; // ISO string format
     updatedAt: string; // ISO string format
+    providerUserId: number
   
     constructor(
       id: number,
@@ -21,6 +22,7 @@ export class Booking {
       userId: number,
       dateTime: string,
       status: BookingStatus,
+      providerUserId: number,
       paymentId?: number,
       latitude?: number,
       longitude?: number,
@@ -43,6 +45,7 @@ export class Booking {
       this.postal = postal;
       this.createdAt = createdAt || '';
       this.updatedAt = updatedAt || '';
+      this.providerUserId = providerUserId;
     }
   }
   

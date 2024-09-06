@@ -9,6 +9,8 @@ import { faMessage } from '@fortawesome/free-regular-svg-icons';
 import { ServiceProviderManagementService } from '../../serviceproviders.service';
 import { ServiceProvider } from '../../entity/serviceprovider.model';
 import { FormsModule } from '@angular/forms';
+import { User } from '../../entity/userprofile.model';
+import { AuthService } from '../../auth.service';
 
 @Component({
   selector: 'app-services',
@@ -21,7 +23,7 @@ export class ServicesComponent implements OnInit {
 
   constructor(
     private serviceManagementService: ServiceManagementService,
-    private providerManagementService: ServiceProviderManagementService,
+    private authService: AuthService,
     private router: Router,
     private route : ActivatedRoute
   ) { }
@@ -34,6 +36,7 @@ export class ServicesComponent implements OnInit {
   tempServices: Service[] = [];
   clickedService: Service | null = null;
   serviceProvider: ServiceProvider | null = null;
+  serviceProviderBasicProfile: User|null = null;
 
   searchKey : string = "";
 
@@ -73,8 +76,8 @@ export class ServicesComponent implements OnInit {
       this.tempServices = data;
       if (this.services.length > 0) {
         this.clickedService = this.services[0];
-        this.providerManagementService.getServiceProviderById(this.clickedService.providerId).subscribe((data) => {
-          this.serviceProvider = data;
+        this.authService.getUserByUserId(this.clickedService.providerId).subscribe((data) => {
+          this.serviceProviderBasicProfile = data;
         })
       }
     });
@@ -86,12 +89,16 @@ export class ServicesComponent implements OnInit {
 
   changeDetailService(id: number) {
     this.clickedService = this.services.find((value)=>value.id==id)??this.services[0];
-    this.providerManagementService.getServiceProviderById(this.clickedService.providerId).subscribe((data) => {
-      this.serviceProvider = data;
+    this.authService.getUserByUserId(this.clickedService.providerId).subscribe((data) => {
+      this.serviceProviderBasicProfile = data;
     })
   }
 
   bookService(id: number,name: string,price:number){
-      this.router.navigate([`/checkout/${id}`],{queryParams:{name:name,price:price}});
+      if(this.serviceProviderBasicProfile!=null){
+        this.router.navigate([`/checkout/${id}`],{queryParams:{name:name,price:price,providerId:this.serviceProviderBasicProfile.id}});
+      }else{
+        alert("Service Provider is null");
+      }
   }
 }

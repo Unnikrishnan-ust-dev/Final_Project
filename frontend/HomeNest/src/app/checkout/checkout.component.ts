@@ -54,13 +54,15 @@ export class CheckoutComponent implements OnInit {
     longitude: 0,
     address: "",
     city: "",
-    postal: 0
+    postal: 0,
+    providerUserId: 0
   };
   ngOnInit() {
     this.orderData.serviceId = Number.parseInt(this.route.snapshot.paramMap.get("id") ?? "0");
     this.route.queryParamMap.subscribe((params) => {
       this.serviceName = params.get("name");
       this.price = params.get("price");
+      this.orderData.providerUserId = Number.parseInt(params.get("providerId")??"0");
     });
 
     this.authService.getAuthenticatedUser().subscribe(data=>{

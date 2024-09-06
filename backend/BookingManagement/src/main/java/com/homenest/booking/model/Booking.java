@@ -27,6 +27,9 @@ public class Booking {
     @Column(name = "UserID", nullable = false)
     private Long userId;
 
+    @Column(name = "ProviderUserId", nullable = false)
+    private Long providerUserId;
+
     @Column(name = "DateTime")
     private LocalDateTime dateTime;
 

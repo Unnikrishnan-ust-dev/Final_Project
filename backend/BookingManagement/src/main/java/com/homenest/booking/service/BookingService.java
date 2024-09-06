@@ -66,4 +66,14 @@ public class BookingService {
 
         return bookingRepository.save(booking);
     }
+
+    public List<Booking> getBookingsByUserId(long userId) {
+        List<Booking> bookings = bookingRepository.findBookingsByUserId(userId);
+        return bookings;
+    }
+
+    public List<Booking> getBookingsByProviderId(long userId) {
+        List<Booking> bookings = bookingRepository.findBookingsByProviderUserId(userId);
+        return bookings;
+    }
 }
