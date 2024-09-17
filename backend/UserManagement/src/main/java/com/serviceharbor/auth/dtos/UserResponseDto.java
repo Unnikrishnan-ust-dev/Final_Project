@@ -28,6 +28,4 @@ public class UserResponseDto {
     private String password;
     private String phoneNo;
     private String role;
-   // private String phoneNo;// This could be an enum or a string, depending on your implementation
-
 }

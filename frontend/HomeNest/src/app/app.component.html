@@ -1,3 +1,4 @@
-<app-navbar></app-navbar>
+<app-navbar (notificationsEvent)="openModal($event)" ></app-navbar>
+<app-notifications [showModal]="showNotificationsModal" (modalEvent)="closeModal($event)"></app-notifications>
 <router-outlet></router-outlet>
 <app-footer></app-footer>

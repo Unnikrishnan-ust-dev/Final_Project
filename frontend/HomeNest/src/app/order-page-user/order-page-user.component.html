@@ -41,15 +41,27 @@
       </div>
      
       <!-- Order Details -->
-      <div class="order-details" *ngIf="selectedOrder">
+      <div class="order-details" *ngIf="selectedOrder" style="position: relative;">
+        <div class="message-modal-container" *ngIf="showProviderModal">
+          <div class="message-modal-body">
+             <div class="modal-title">
+               <h1>Contact Details</h1>
+               <fa-icon [icon]="closeIcon" size="xl" style="cursor: pointer; padding-left: 10px;" [border]="true" 
+               (click)="contactServiceProvider()">
+               </fa-icon>
+             </div>
+              <p>Name: {{serviceProviderBasicProfile?.firstName}} {{serviceProviderBasicProfile?.lastName}}</p>
+              <p>Email Id: {{serviceProviderBasicProfile?.email}}</p>
+              <p>Contact No: {{serviceProviderBasicProfile?.phoneNo}}</p>
+          </div>
+      </div>
           <h3>Order Details</h3>
           <p><strong>Order ID:</strong> {{ selectedOrder.id }}</p>
           <p><strong>Service ID:</strong> {{ selectedOrder.serviceId }}</p>
           <p><strong>Status:</strong> {{ selectedOrder.status }}</p>
           <p><strong>Payment ID:</strong> {{ selectedOrder.paymentId }}</p>
-          <p><strong>Address:</strong> {{ selectedOrder.address }}</p>
-          <p><strong>Created At:</strong> {{ selectedOrder.createdAt }}</p>
-          <p><strong>Updated At:</strong> {{ selectedOrder.updatedAt }}</p>
+          <p><strong>Delivery Address:</strong> {{ selectedOrder.address }}</p>
+          <p><strong>Order Date:</strong> {{ selectedOrder.createdAt }}</p>
          
           <!-- Action Buttons -->
           <div class="order-actions">

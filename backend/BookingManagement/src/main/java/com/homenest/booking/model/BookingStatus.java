@@ -4,5 +4,6 @@ public enum BookingStatus {
     PENDING,
     ACCEPTED,
     DECLINED,
-    COMPLETED;  // Ensure all relevant statuses are included
+    COMPLETED,
+    CANCELLED;// Ensure all relevant statuses are included
 }

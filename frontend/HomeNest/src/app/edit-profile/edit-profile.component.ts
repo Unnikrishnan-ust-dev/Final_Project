@@ -17,6 +17,7 @@ export class EditProfileComponent implements OnInit {
   user: User = {
     id: 0,
     firstName: '',
+    lastName: '',
     email: '',
     password: '',
     role: '',
@@ -31,7 +32,16 @@ export class EditProfileComponent implements OnInit {
   }
 
   handleSubmit() {
-    console.log(this.user);
+    this.authService.updateUser(this.user.id,this.user).subscribe({
+      next:(data)=>{
+        console.log(data);
+        alert("User updated Successfully");
+      },
+      error: (err)=>{
+        console.log(err);
+        alert("Something went wrong");
+      }
+    })
   }
 
 }

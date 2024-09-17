@@ -1,0 +1,10 @@
+<div class="notifications-container" *ngIf="showModal">
+    <div class="notifications-title">
+        <h1>Notifications</h1>
+        <fa-icon [icon]="closeIcon" size="xl" (click)="closeModal()"></fa-icon>
+    </div>
+    <div class="notification" *ngFor="let notification of notifications">
+        <h2>{{notification.title}}</h2>
+        <p>{{notification.body}}</p>
+    </div>
+</div>

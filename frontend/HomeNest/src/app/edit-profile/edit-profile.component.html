@@ -1,25 +1,21 @@
 <div class="container">
     <h2>Edit Profile</h2>
-    <form id="editProfileForm" (change)="handleSubmit()">
+    <form id="editProfileForm" (ngSubmit)="handleSubmit()">
         <div class="form-group">
             <label for="firstName">First Name</label>
-            <input type="text" id="firstName" name="firstName" required [ngModel]="user.firstName">
+            <input type="text" id="firstName" name="firstName" required [(ngModel)]="user.firstName">
         </div>
         <div class="form-group">
             <label for="lastName">Last Name</label>
-            <input type="text" id="lastName" name="lastName" [ngModel]="user.lastName">
+            <input type="text" id="lastName" name="lastName" [(ngModel)]="user.lastName">
         </div>
         <div class="form-group">
             <label for="email">Email</label>
-            <input type="email" id="email" name="email" required [ngModel]="user.email">
+            <input type="email" id="email" name="email" readonly required [(ngModel)]="user.email">
         </div>
-        <!-- <div class="form-group">
-            <label for="password">Password</label>
-            <input type="password" id="password" name="password" required [ngModel]="user.firstName">
-        </div> -->
         <div class="form-group">
             <label for="phoneNo">Phone Number</label>
-            <input type="text" id="phoneNo" name="phoneNo" [ngModel]="user.phoneNo">
+            <input type="text" id="phoneNo" name="phoneNo" [(ngModel)]="user.phoneNo">
         </div>
         <button type="submit">Update Profile</button>
     </form>

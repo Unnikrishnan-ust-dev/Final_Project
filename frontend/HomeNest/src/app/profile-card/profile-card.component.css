@@ -1,4 +1,4 @@
-.profile-card{
+/* .profile-card{
     border: 1px solid #000;
     border-radius: 5px;
     background-color: #fff;
@@ -21,4 +21,85 @@ h1{
 }
 p{
     font-size: 13px;
+} */
+
+/* Styling the entire profile card */
+.profile-card {
+    max-width: 400px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    background-color: #ffffff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    margin: 20px auto;
+}
+
+/* Section styling with some padding and division */
+.section {
+    padding: 20px;
+    border-bottom: 1px solid #f0f0f0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Remove border for the last section */
+.section:last-child {
+    border-bottom: none;
+}
+
+/* Image styling */
+img {
+    border-radius: 50%;
+    height: 60px;
+    width: 60px;
+    object-fit: cover;
+    border: 2px solid #ddd;
+    margin-right: 15px;
+}
+
+/* Profile info next to the image */
+.details {
+    display: flex;
+    align-items: center;
+}
+
+.info h1 {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0;
+    color: #333;
+}
+
+.info p {
+    font-size: 14px;
+    margin: 4px 0 0;
+    color: #888;
+}
+
+/* Action links with better styling */
+.actions p {
+    font-size: 14px;
+    color: #007bff;
+    margin: 5px 0;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.actions p:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}
+
+/* Logout button styling */
+.logout p {
+    font-size: 14px;
+    color: #dc3545;
+    cursor: pointer;
+    text-align: center;
+}
+
+.logout p:hover {
+    color: #c82333;
+    text-decoration: underline;
 }

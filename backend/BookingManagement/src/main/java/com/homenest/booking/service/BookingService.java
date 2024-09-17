@@ -56,7 +56,7 @@ public class BookingService {
 
         // Define valid transitions
         if (currentStatus == BookingStatus.PENDING &&
-                (newStatus == BookingStatus.ACCEPTED || newStatus == BookingStatus.DECLINED)) {
+                (newStatus == BookingStatus.ACCEPTED || newStatus == BookingStatus.DECLINED|| newStatus == BookingStatus.CANCELLED)) {
             booking.setStatus(newStatus);
         } else if (currentStatus == BookingStatus.ACCEPTED && newStatus == BookingStatus.COMPLETED) {
             booking.setStatus(newStatus);

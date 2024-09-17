@@ -5,12 +5,15 @@ import { NgFor, NgIf } from '@angular/common';
 import { BookingService } from '../booking.service';
 import { AuthService } from '../auth.service';
 import { User } from '../entity/userprofile.model';
+import { faClose } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { BookingStatus } from '../entity/bookingStatus.model';
  
  
 @Component({
   selector: 'app-orders',
   templateUrl: './order-page-user.component.html',
-  imports:[FormsModule, NgFor, NgIf],
+  imports:[FormsModule, NgFor, NgIf,FontAwesomeModule],
   standalone: true,
   styleUrls: ['./order-page-user.component.css']
 })
@@ -22,10 +25,16 @@ export class OrdersComponent implements OnInit {
   selectedPaymentStatus: string = '';
   selectedOrderStatus: string = '';
   user: User|null = null;
+  showProviderModal: boolean = false;
+  closeIcon: any = faClose;
+  serviceProviderBasicProfile: User|null = null;
+
   constructor(private orderService: BookingService,private authService: AuthService) { }
  
   ngOnInit(): void {
-    this.user = this.authService.user;
+    this.authService.user$.subscribe(user=>{
+      this.user = user;
+    })
     this.loadOrders();
   }
  
@@ -44,7 +53,11 @@ export class OrdersComponent implements OnInit {
   selectOrder(orderId: number): void {
     this.orderService.getBookingById(orderId).subscribe(data => {
       this.selectedOrder = data;
+      this.authService.getUserByUserId(data.providerUserId).subscribe((providerData) => {
+        this.serviceProviderBasicProfile = providerData;
+      })
     });
+    
   }
  
   applyFilters(): void {
@@ -54,9 +67,23 @@ export class OrdersComponent implements OnInit {
  
   contactServiceProvider(): void {
     // Implement contact functionality
+    this.showProviderModal = !this.showProviderModal;
   }
  
   cancelOrder(): void {
     // Implement cancel order functionality
+    let confirmation = confirm("Do you really want to cancel your order?");
+    if(confirmation){
+      this.orderService.updateBookingStatus(this.selectedOrder.id,BookingStatus.CANCELLED).subscribe({
+        next:(data)=>{
+          console.log(data);
+          alert("Order Canceled Successfully");
+        },
+        error:(err)=>{
+          console.log(err);
+          alert("Error cancelling order!")
+        }
+      })
+    }
   }
 }

@@ -13,6 +13,19 @@ export class BookingService {
 
   constructor(private http: HttpClient) { }
 
+  // Create the razorpay payment link
+  createPaymentLink(paymentPayload: any): Observable<any> {
+    const url = "http://localhost:9999/payments/create-link";
+  
+    return this.http.post(url, paymentPayload);
+  }
+
+  getPaymentInfo(paymentLinkId:string):Observable<any>{
+    const url = `http://localhost:9999/payments/payment-link/${paymentLinkId}`;
+    return this.http.get(url);
+  }
+  
+
   // Create a new booking
   createBooking(booking: Booking, userEmail: string): Observable<Booking> {
     const url = `${this.baseUrl}/createBooking`;
@@ -44,7 +57,7 @@ export class BookingService {
   }
 
   // Cancel a booking
-  cancelBooking(id: number): Observable<void> {
+  deleteBooking(id: number): Observable<void> {
     const url = `${this.baseUrl}/deleteBooking/${id}`;
     return this.http.delete<void>(url);
   }

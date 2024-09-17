@@ -162,3 +162,33 @@
     transform: translateY(0);
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
   }
+
+  .message-modal-container{
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #000000ab;
+    padding: 20px;
+    border-radius: 5px;
+    border: 1px solid #F5F1FE;
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+}
+.modal-title{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.message-modal-body{
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 5px;
+  border: 1px solid #F5F1FE;
+
+}

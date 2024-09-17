@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map, Observable } from 'rxjs';
+import { BehaviorSubject, map, Observable } from 'rxjs';
 import { RegisterModel } from './entity/user';
 import { LoginModel } from './entity/login.model';
 import { User } from './entity/userprofile.model';
@@ -11,11 +11,15 @@ import { User } from './entity/userprofile.model';
 export class AuthService {
  
   private apiUrl = 'http://localhost:9999/auth';
-  user : User|null = null;
+  // user : User|null = null;
+  private _user = new BehaviorSubject<User | null>(null);
+  public user$ = this._user.asObservable();
  
   constructor(private http: HttpClient) {
     if(localStorage.getItem("user")!=null){
-      this.user = JSON.parse(localStorage.getItem("user")??"{}")
+      let userObject = JSON.parse(localStorage.getItem("user")??"{}");
+      // this.user = userObject;
+      this._user.next(userObject);
     }
   }
  
@@ -36,7 +40,8 @@ export class AuthService {
         localStorage.setItem('token',response.token);
         this.getAuthenticatedUser().subscribe({
           next: (data)=>{
-            this.user = data;
+            // this.user = data;
+            this._user.next(data);
             localStorage.setItem("user",JSON.stringify(data))
           }
         });
@@ -46,12 +51,12 @@ export class AuthService {
  
   // To log out the user
   logout() {
-    this.user = null;
+    // this.user = null;
+    this._user.next(null);
     localStorage.removeItem('expiresIn');
     localStorage.removeItem('email');
     localStorage.removeItem('user');
     localStorage.removeItem('token');
-    window.location.reload();
   }
  
   // To get the JWT token from local storage
@@ -73,5 +78,9 @@ export class AuthService {
         "Authorization":`Bearer ${this.getToken()}`
       }
     });
+  }
+
+  updateUser(id: number, user: User) : Observable<User>{
+    return this.http.put<User>(`http://localhost:9999/updateUser/${id}`,user);
   }
 }

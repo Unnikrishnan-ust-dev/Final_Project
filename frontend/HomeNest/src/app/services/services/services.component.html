@@ -1,4 +1,5 @@
 <main>
+    
     <h1>Search Jobs</h1>
     <div class="filters">
         <div class="search">
@@ -30,12 +31,12 @@
         </div>
         <div *ngIf="clickedService!=null" class="service-detail">
             <img src={{serviceDetailImage}} alt="">
-            <div>
+            <div class="heading-section">
                 <div>
                     <h1>{{clickedService.name}}</h1>
                     <!-- <p>...</p> -->
                     <!-- <button class="btn-transparent">Save</button> -->
-                    <button style="padding: 10px;" class="btn-solid" (click)="bookService(clickedService.id,clickedService.name,clickedService.price)">Book Now</button>
+                    <button style="padding: 10px;cursor: pointer;" class="btn-solid" (click)="bookService(clickedService.id,clickedService.name,clickedService.price)">Book Now</button>
                 </div>
                 <h2>₹{{clickedService.price}}</h2>
                 <span>
@@ -43,13 +44,25 @@
                     <!-- <p>Laborum</p> -->
                     <!-- <p> | </p> -->
                     <!-- <fa-icon></fa-icon> -->
-                    <p>{{clickedService.location}}</p>
+                    <p><fa-icon [icon]="locationIcon" style="padding-right: 5px;"></fa-icon>{{clickedService.location}}</p>
+                    <p><fa-icon [icon]="categoryIcon" style="padding-right: 5px;"></fa-icon>{{clickedService.category}}</p>
                 </span>
                 <span>
-                    <!-- <p>5 Year Experience</p> -->
-                    <!-- <p>Contract based</p> -->
-                    <p>{{clickedService.category}}</p>
+                    <!-- <p>5 Year Experience</p>
+                    <p>Contract based</p> -->
+                    <p>{{clickedService.description}}</p>
                 </span>
+            </div>
+            <div class="message-modal-container" *ngIf="openMessageModal">
+                <div class="message-modal-body">
+                   <div class="modal-title">
+                     <h1>Contact Details</h1>
+                     <fa-icon [icon]="closeIcon" size="xl" style="cursor: pointer;" (click)="openModal()">
+                     </fa-icon>
+                   </div>
+                    <p>Email Id: {{serviceProviderBasicProfile?.email}}</p>
+                    <p>Contact No: {{serviceProviderBasicProfile?.phoneNo}}</p>
+                </div>
             </div>
             <div class="contact-provider">
                 <h1 class="manrope bold">Contact Provider</h1>
@@ -59,7 +72,7 @@
                         <h1 class="manrope bold">{{serviceProviderBasicProfile?.firstName}} {{serviceProviderBasicProfile?.lastName}}</h1>
                         <p class="manrope regular">{{serviceProviderBasicProfile?.email}}</p>
                     </div>
-                    <button class="btn-transparent"><fa-icon [icon]="messageIcon"></fa-icon> Message</button>
+                    <button style="cursor: pointer;" class="btn-transparent" (click)="openModal()"><fa-icon [icon]="messageIcon"></fa-icon> Message</button>
                 </div>
             </div>
             <!-- <div>

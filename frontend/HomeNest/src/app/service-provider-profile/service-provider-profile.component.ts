@@ -21,7 +21,9 @@ export class ServiceProviderProfileComponent implements OnInit {
   constructor(private fb: FormBuilder,private authService: AuthService,private serviceProviderService: ServiceProviderManagementService) { }
  
   ngOnInit(): void {
-    this.user = this.authService.user;
+    this.authService.user$.subscribe(user=>{
+      this.user = user;
+    })
     if(this.user!=null){
       this.serviceProviderService.getServiceProviderByUserId(this.user.id).subscribe({
         next:(data)=>{

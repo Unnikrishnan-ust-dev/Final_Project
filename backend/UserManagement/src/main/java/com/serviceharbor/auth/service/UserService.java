@@ -19,6 +19,22 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
+    public User updateUser(Long id, UserResponseDto userDto) {
+        Optional<User> optionalUser = userRepository.findById(id);
+        if(optionalUser.isPresent()) {
+            User user = optionalUser.get();
+            // Only update allowed fields
+            user.setFirstName(userDto.getFirstName());
+            user.setLastName(userDto.getLastName());
+            user.setEmail(userDto.getEmail());
+            user.setPhoneNo(userDto.getPhoneNo());
+
+            return userRepository.save(user);
+        } else {
+            throw new RuntimeException("User not found with id: " + id);
+        }
+    }
+
     public User getUserByRoleAndEmail(String role, String email) {
         Role userRole;
         try {

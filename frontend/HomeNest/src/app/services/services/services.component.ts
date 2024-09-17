@@ -11,6 +11,7 @@ import { ServiceProvider } from '../../entity/serviceprovider.model';
 import { FormsModule } from '@angular/forms';
 import { User } from '../../entity/userprofile.model';
 import { AuthService } from '../../auth.service';
+import { faClose, faLayerGroup, faLocation } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-services',
@@ -20,6 +21,9 @@ import { AuthService } from '../../auth.service';
   styleUrl: './services.component.css'
 })
 export class ServicesComponent implements OnInit {
+openModal() {
+this.openMessageModal = !this.openMessageModal;
+}
 
   constructor(
     private serviceManagementService: ServiceManagementService,
@@ -28,9 +32,15 @@ export class ServicesComponent implements OnInit {
     private route : ActivatedRoute
   ) { }
 
+  // Assets Variables(images,icons)
   serviceDetailImage: string = "/assets/serviceDetail.png";
   avatar: any = "/assets/profile-pic.png";
   messageIcon = faMessage;
+  closeIcon = faClose;
+  locationIcon = faLocation;
+  categoryIcon = faLayerGroup;
+
+  openMessageModal = false;
 
   services: Service[] = [];
   tempServices: Service[] = [];

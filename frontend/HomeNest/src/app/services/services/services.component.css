@@ -55,6 +55,7 @@ main > h2{
     width: 60%;
     border: 1px solid #F3F4F6;
     border-radius: 5px;
+    position: relative;
 }
 .service-detail > img{
     width: 100%;
@@ -100,4 +101,38 @@ button{
 }
 .contact-provider button{
     margin-left: auto;
+}
+
+.heading-section{
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.heading-section> div{
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Message Modal */
+.message-modal-container{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #F3F4F6;
+    padding: 20px;
+    border-radius: 5px;
+    border: 1px solid #F5F1FE;
+    width: 50%;
+    height: 50%;
+}
+.modal-title{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
 }

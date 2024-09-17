@@ -1,9 +1,10 @@
 import { NgIf } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { ServiceManagementService } from '../servicemanagement.service';
 import { Service } from '../entity/services.model';
 import { AuthService } from '../auth.service';
+import { User } from '../entity/userprofile.model';
 
 @Component({
   selector: 'app-service-form',
@@ -12,9 +13,15 @@ import { AuthService } from '../auth.service';
   imports: [FormsModule, NgIf],
   styleUrls: ['./service-form.component.css']
 })
-export class ServiceFormComponent {
+export class ServiceFormComponent implements OnInit{
 
+  user : User|null = null;
   constructor(private serviceManagementService: ServiceManagementService, private authService: AuthService) { }
+  ngOnInit(): void {
+    this.authService.user$.subscribe(user=>{
+      this.user = user;
+    })
+  }
 
   serviceData: Service = {
     id: 0,
@@ -27,7 +34,7 @@ export class ServiceFormComponent {
   }
 
   handleSubmit(): void {
-    this.serviceManagementService.addService(this.serviceData, this.authService.user?.email ?? "").subscribe(
+    this.serviceManagementService.addService(this.serviceData, this.user?.email ?? "").subscribe(
       {
         next: (data) => {
           this.serviceData = {

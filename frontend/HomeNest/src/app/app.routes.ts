@@ -10,9 +10,9 @@ import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { OrderSuccessComponent } from './order-success/order-success.component';
 import { ServiceFormComponent } from './service-form/service-form.component';
 import { ServiceProviderProfileComponent } from './service-provider-profile/service-provider-profile.component';
-import { AuthGuardService } from './auth-guard.service';
-import { UserAuthGaurdService } from './user-auth-gaurd.service';
-import { CheckIsLoggedInGaurdService } from './check-is-logged-in-gaurd.service';
+import { AuthGuardService } from './routeGaurds/auth-guard.service';
+import { UserAuthGaurdService } from './routeGaurds/user-auth-gaurd.service';
+import { CheckIsLoggedInGaurdService } from './routeGaurds/check-is-logged-in-gaurd.service';
 import { OrdersComponent } from './order-page-user/order-page-user.component';
 
 export const routes: Routes = [

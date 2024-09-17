@@ -16,30 +16,34 @@ import { AuthService } from '../auth.service';
 export class CheckoutComponent implements OnInit {
 
   userEmail : string = "";
-
-  handleSubmit() {
-    console.log("handleSubmit");
-    this.bookingService.createBooking(this.orderData,this.userEmail).subscribe({
-      next:(data)=>{
-        this.router.navigateByUrl("/order-success");
-      },
-      error:(error)=>{
-        console.log(error);
-      }
-    })
-  }
   locationButtonWidth: any = "100%";
+  loaderState : string = "none";
 
-  constructor(private route: ActivatedRoute,private bookingService: BookingService,private authService:AuthService,private router: Router) { }
+  constructor(private route: ActivatedRoute,private bookingService: BookingService,private authService:AuthService,private router: Router) { };
 
   currentLocDiv = "none";
   serviceName: string | null = "";
-  price: string | null = "";
+  price: number  = 0;
 
-  paymentCard = {
-    cardNo : "",
-    expiry: "",
-    cvv: ""
+  paymentPayload  = {
+    amount: 1000,
+    currency: "INR",
+    reference_id: "",
+    description: "",
+    customer: {
+      name: "",
+      contact: "",
+      email: ""
+    },
+    notify: {
+      sms: true,
+      email: true
+    },
+    reminder_enable: true,
+    notes: {
+    },
+    callback_url: "http://localhost:4200/order-success",
+    callback_method: "get"
   }
 
   orderData : Booking = {
@@ -57,16 +61,52 @@ export class CheckoutComponent implements OnInit {
     postal: 0,
     providerUserId: 0
   };
+  
   ngOnInit() {
     this.orderData.serviceId = Number.parseInt(this.route.snapshot.paramMap.get("id") ?? "0");
     this.route.queryParamMap.subscribe((params) => {
       this.serviceName = params.get("name");
-      this.price = params.get("price");
+      this.price = Number.parseInt(params.get("price")??"0");
       this.orderData.providerUserId = Number.parseInt(params.get("providerId")??"0");
     });
 
     this.authService.getAuthenticatedUser().subscribe(data=>{
       this.userEmail = data.email;
+      this.paymentPayload.customer = {
+        contact: data.phoneNo??"",
+        email: data.email,
+        name: data.firstName + data.lastName
+      }
+    })
+  }
+
+  showLoader() {
+    this.loaderState = "flex";
+  }
+  
+  hideLoader() {
+    this.loaderState = "none";
+  }
+  
+
+  handleSubmit() {
+    this.showLoader();
+    this.paymentPayload.amount = this.price * 100;
+    this.paymentPayload.reference_id = "TS"+this.getUniqueTransactionId();
+    this.paymentPayload.description = "Payment for "+this.serviceName+" of "+this.price;
+    this.paymentPayload.notes = {
+      ...this.orderData
+    }
+    this.bookingService.createPaymentLink(this.paymentPayload).subscribe({
+      next:(data)=>{
+        this.hideLoader();
+        console.log(data);
+        window.location.replace(data.short_url);
+      },
+      error:(err)=>{
+        this.hideLoader();
+        console.log(err);
+      }
     })
   }
 
@@ -86,5 +126,10 @@ export class CheckoutComponent implements OnInit {
     } else {
       console.error('Geolocation is not supported by this browser.');
     }
+  }
+
+  getUniqueTransactionId(){
+    let uid = Date.now().toString(36) + Math.floor(Math.pow(10, 6) + Math.random() * 9*Math.pow(10, 6)).toString(36);
+    return uid;
   }
 }
