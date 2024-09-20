@@ -19,7 +19,7 @@
                 <span class="total-price">₹{{price}}</span>
             </div>
         </section>
-        <form (ngSubmit)="handleSubmit()">
+        <form #orderCheckoutForm (ngSubmit)="handleSubmit()">
             <div class="form-group">
                 <label for="address">Address</label>
                 <input type="text" id="address" name="address" required [(ngModel)]="orderData.address">

@@ -1,4 +1,10 @@
 <app-navbar (notificationsEvent)="openModal($event)" ></app-navbar>
 <app-notifications [showModal]="showNotificationsModal" (modalEvent)="closeModal($event)"></app-notifications>
+
 <router-outlet></router-outlet>
+<app-navigation-map
+  [providerLocation]="{ lat: 12.9716, lng: 77.5946 }"
+  [customerLocation]="{ lat: 12.2958, lng: 76.6394 }"
+></app-navigation-map>
+
 <app-footer></app-footer>

@@ -55,15 +55,21 @@
             </div>
             <div class="message-modal-container" *ngIf="openMessageModal">
                 <div class="message-modal-body">
-                   <div class="modal-title">
-                     <h1>Contact Details</h1>
-                     <fa-icon [icon]="closeIcon" size="xl" style="cursor: pointer;" (click)="openModal()">
-                     </fa-icon>
-                   </div>
-                    <p>Email Id: {{serviceProviderBasicProfile?.email}}</p>
-                    <p>Contact No: {{serviceProviderBasicProfile?.phoneNo}}</p>
+                  <div class="modal-title">
+                    <h1>Contact Details</h1>
+                    <fa-icon
+                      [icon]="closeIcon"
+                      size="xl"
+                      class="close-icon"
+                      (click)="openModal()"
+                    ></fa-icon>
+                  </div>
+                  <div class="modal-content">
+                    <p><strong>Email Id:</strong> {{serviceProviderBasicProfile?.email}}</p>
+                    <p><strong>Contact No:</strong> {{serviceProviderBasicProfile?.phoneNo}}</p>
+                  </div>
                 </div>
-            </div>
+              </div>              
             <div class="contact-provider">
                 <h1 class="manrope bold">Contact Provider</h1>
                 <div>

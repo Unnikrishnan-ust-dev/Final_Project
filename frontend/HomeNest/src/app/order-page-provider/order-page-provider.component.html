@@ -65,11 +65,17 @@
          
           <!-- Action Buttons -->
           <div class="order-actions">
-            @if(selectedOrder.status!="CANCELLED"){
-              <button class="btn btn-contact" (click)="contactServiceProvider()">Contact Service Provider</button>
+            @if(selectedOrder.status!="CANCELLED"&&selectedOrder.status!="DECLINED"&&selectedOrder.status!="COMPLETED"){
+              <button class="btn btn-contact" (click)="contactServiceProvider()">Contact Customer</button>
             }
             @if(selectedOrder.status=="PENDING"){
-              <button  class="btn btn-cancel" (click)="cancelOrder()">Cancel Order</button>
+              <button  class="btn btn-cancel" (click)="changeOrderStatus('DECLINE')">Decline Order</button>
+            }
+            @if(selectedOrder.status=="PENDING"){
+              <button  class="btn btn-contact" (click)="changeOrderStatus('ACCEPT')">Accept Order</button>
+            }
+            @if(selectedOrder.status=="ACCEPTED"){
+              <button  class="btn btn-contact" (click)="changeOrderStatus('COMPLETED')">Mark as Completed</button>
             }
           </div>
       </div>

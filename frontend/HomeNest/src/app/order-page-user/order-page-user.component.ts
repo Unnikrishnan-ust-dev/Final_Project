@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
  
 import { FormsModule } from '@angular/forms';
-import { NgFor, NgIf } from '@angular/common';
+import { DatePipe, NgFor, NgIf } from '@angular/common';
 import { BookingService } from '../booking.service';
 import { AuthService } from '../auth.service';
 import { User } from '../entity/userprofile.model';
@@ -13,7 +13,7 @@ import { BookingStatus } from '../entity/bookingStatus.model';
 @Component({
   selector: 'app-orders',
   templateUrl: './order-page-user.component.html',
-  imports:[FormsModule, NgFor, NgIf,FontAwesomeModule],
+  imports:[FormsModule, NgFor, NgIf,FontAwesomeModule,DatePipe],
   standalone: true,
   styleUrls: ['./order-page-user.component.css']
 })
@@ -78,6 +78,7 @@ export class OrdersComponent implements OnInit {
         next:(data)=>{
           console.log(data);
           alert("Order Canceled Successfully");
+          window.location.reload();
         },
         error:(err)=>{
           console.log(err);

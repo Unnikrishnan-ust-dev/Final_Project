@@ -29,19 +29,25 @@
         </div>
     </div>
 
-    <div style="cursor: pointer;" class="section actions">
-        <ng-container *ngIf="user?.role === 'USER'; else adminActions">
+    <div style="cursor: pointer;" class="section actions" *ngIf="user?.role === 'USER'">
             <p routerLink="/edit-profile">Edit Profile</p>
-        </ng-container>
-        <ng-template #adminActions>
-            <p routerLink="/edit-profile">Edit Basic Profile</p>
-            <p routerLink="/service-provider-profile">Edit Extended Profile</p>
-            <p routerLink="/order-page-provider">View All Orders</p>
-        </ng-template>
+        </div>
+        
+        <div class="section actions" *ngIf="user?.role === 'SERVICE_PROVIDER'">
+        <p routerLink="/edit-profile">Edit Basic Profile</p>
     </div>
-   <div class="section actions">
-     <p routerLink="/order-page-user">View Orders</p>
-   </div>
+    
+    <div class="section actions" *ngIf="user?.role === 'SERVICE_PROVIDER'">
+        <p routerLink="/service-provider-profile">Edit Extended Profile</p>
+    </div>
+
+    <div class="section actions" *ngIf="user?.role === 'SERVICE_PROVIDER'">
+        <p routerLink="/order-page-provider">View All Orders</p>
+    </div>
+
+    <div class="section actions" *ngIf="user?.role === 'USER'">
+      <p routerLink="/order-page-user">View Orders</p>
+    </div>
 
     <div (click)="logOut()" class="section logout">
         <p>Sign Out</p>

@@ -14,6 +14,7 @@ import { AuthGuardService } from './routeGaurds/auth-guard.service';
 import { UserAuthGaurdService } from './routeGaurds/user-auth-gaurd.service';
 import { CheckIsLoggedInGaurdService } from './routeGaurds/check-is-logged-in-gaurd.service';
 import { OrdersComponent } from './order-page-user/order-page-user.component';
+import { ProviderOrdersComponent } from './order-page-provider/order-page-provider.component';
 
 export const routes: Routes = [
     {path: "",component:HomeComponent},
@@ -27,6 +28,6 @@ export const routes: Routes = [
     {path: "service-form", component: ServiceFormComponent, canActivate:[AuthGuardService]},
     {path: "service-provider-profile", component: ServiceProviderProfileComponent, canActivate:[AuthGuardService]},
     {path: "order-page-user", component: OrdersComponent, canActivate: [UserAuthGaurdService]},
-    {path: "order-page-provider", component: OrdersComponent, canActivate:[AuthGuardService]},
+    {path: "order-page-provider", component: ProviderOrdersComponent, canActivate:[AuthGuardService]},
     { path: '\*\*', component: NotFoundComponent }
 ];

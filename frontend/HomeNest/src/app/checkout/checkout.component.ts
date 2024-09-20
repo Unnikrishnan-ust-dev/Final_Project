@@ -90,6 +90,10 @@ export class CheckoutComponent implements OnInit {
   
 
   handleSubmit() {
+    if(this.orderData.address==""||this.orderData.postal==0||this.orderData.postal==null||this.orderData.city==""){
+      alert("Fields are mandatory");
+      return;
+    }
     this.showLoader();
     this.paymentPayload.amount = this.price * 100;
     this.paymentPayload.reference_id = "TS"+this.getUniqueTransactionId();
