@@ -10,7 +10,7 @@ import {faFacebook, faLinkedin, faTwitter, faYoutube} from "@fortawesome/free-br
   styleUrl: './footer.component.css'
 })
 export class FooterComponent {
-  logoLink = "/assets/logo-footer.png";
+  logoLink = "/assets/logo-new.png";
   twitter = faTwitter;
   linkedIn = faLinkedin;
   facebook = faFacebook;

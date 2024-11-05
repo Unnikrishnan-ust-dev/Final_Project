@@ -15,9 +15,18 @@ import { UserAuthGaurdService } from './routeGaurds/user-auth-gaurd.service';
 import { CheckIsLoggedInGaurdService } from './routeGaurds/check-is-logged-in-gaurd.service';
 import { OrdersComponent } from './order-page-user/order-page-user.component';
 import { ProviderOrdersComponent } from './order-page-provider/order-page-provider.component';
+import { providerGaurdGuard } from './routeGaurds/provider-gaurd.guard';
+import { AllServicesComponent } from './serviceProviders/all-services/all-services.component';
+import { ServiceUpdateFormComponent } from './service-update-form/service-update-form.component';
+import { hasQueryToUpdateGuard } from './routeGaurds/has-query-to-update.guard';
+import { ContactComponent } from './pages/contact/contact.component';
+import { AboutComponent } from './pages/about/about.component';
 
 export const routes: Routes = [
-    {path: "",component:HomeComponent},
+    // if the user is a provider dont allow
+    {path: "",component:HomeComponent, canActivate: [providerGaurdGuard]},
+    {path:"contact", component:ContactComponent},
+    {path:"about", component:AboutComponent},
     {path: "login", component:LoginComponent, canActivate: [CheckIsLoggedInGaurdService]},
     {path: "signup", component: RegistrationComponent, canActivate: [CheckIsLoggedInGaurdService]},
     {path: "services", component: ServicesComponent, canActivate: [UserAuthGaurdService]},
@@ -26,8 +35,10 @@ export const routes: Routes = [
     {path: "edit-profile", component: EditProfileComponent},
     {path: "order-success", component: OrderSuccessComponent, canActivate: [UserAuthGaurdService]},
     {path: "service-form", component: ServiceFormComponent, canActivate:[AuthGuardService]},
+    {path: "service-update-form", component: ServiceUpdateFormComponent, canActivate:[AuthGuardService,hasQueryToUpdateGuard]},
     {path: "service-provider-profile", component: ServiceProviderProfileComponent, canActivate:[AuthGuardService]},
     {path: "order-page-user", component: OrdersComponent, canActivate: [UserAuthGaurdService]},
     {path: "order-page-provider", component: ProviderOrdersComponent, canActivate:[AuthGuardService]},
+    {path: "services/provider", component: AllServicesComponent, canActivate:[AuthGuardService]},
     { path: '\*\*', component: NotFoundComponent }
 ];

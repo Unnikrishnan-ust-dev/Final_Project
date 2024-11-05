@@ -1,25 +1,3 @@
-<!-- <div class="profile-card">
-    <div class="section details">
-        <img src={{avatar}} alt="">
-        <span>
-            <h1 class="lexend bold">{{user?.firstName}} {{user?.lastName}}</h1>
-            <p class="manrope regular">{{user?.email}}</p>
-        </span>
-    </div>
-    <div style="cursor: pointer;" class="section">
-        @if (user?.role=="USER") {
-            <p routerLink="/edit-profile">Edit Profile</p>
-        }@else {
-            <p routerLink="/edit-profile">Edit Basic Profile</p>
-            <p routerLink="/service-provider-profile">Edit Extended Profile</p>
-            <p routerLink="/order-page-provider">View All Orders</p>
-        }
-    </div>
-    <div (click)="logOut()" style="cursor: pointer;" class="section">
-        <p>Sign Out</p>
-    </div>
-</div> -->
-
 <div class="profile-card">
     <div class="section details">
         <img [src]="avatar" alt="Profile Picture">
@@ -39,14 +17,6 @@
     
     <div class="section actions" *ngIf="user?.role === 'SERVICE_PROVIDER'">
         <p routerLink="/service-provider-profile">Edit Extended Profile</p>
-    </div>
-
-    <div class="section actions" *ngIf="user?.role === 'SERVICE_PROVIDER'">
-        <p routerLink="/order-page-provider">View All Orders</p>
-    </div>
-
-    <div class="section actions" *ngIf="user?.role === 'USER'">
-      <p routerLink="/order-page-user">View Orders</p>
     </div>
 
     <div (click)="logOut()" class="section logout">

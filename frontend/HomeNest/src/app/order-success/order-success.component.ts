@@ -3,6 +3,9 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faCheckCircle, faCircle } from '@fortawesome/free-solid-svg-icons';
 import { BookingService } from '../booking.service';
+import { NotificationService } from '../notification.service';
+import { User } from '../entity/userprofile.model';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-order-success',
@@ -14,10 +17,19 @@ import { BookingService } from '../booking.service';
 export class OrderSuccessComponent implements OnInit{
   faCircle = faCheckCircle;
   queryParams : any = {};
-  constructor(private route: ActivatedRoute,private bookingService: BookingService,private router: Router){}
+  user: User|null = null;
+  constructor(
+    private authService: AuthService,
+    private route: ActivatedRoute,
+    private bookingService: BookingService,
+    private router: Router,
+    private notificationService: NotificationService){}
   
 
   ngOnInit(): void {
+    this.authService.getAuthenticatedUser().subscribe(data=>{
+      this.user = data;
+    })
     // Get all query params from the URL
     this.route.queryParams.subscribe(params => {
       this.queryParams = {
@@ -30,10 +42,20 @@ export class OrderSuccessComponent implements OnInit{
 
     if(this.queryParams['razorpay_payment_link_status']=="paid"){
       this.bookingService.getPaymentInfo(this.queryParams['razorpay_payment_link_id']).subscribe({
-        next: (data)=>{
-          this.bookingService.createBooking(data['notes'],data['customer']['email']).subscribe({
-            next:(data)=>{
-              console.log(data);
+        next: (paymentData)=>{
+          this.bookingService.createBooking(paymentData['notes'],paymentData['customer']['email']).subscribe({
+            next:(bookingData)=>{
+              console.log(bookingData);
+              if(this.user!=null){
+                this.notificationService.createNotification(this.user?.id,"Congrats for successfully completing the order").subscribe({
+                  next:(value)=>{
+                    console.log(value);
+                  },
+                  error: (err)=>{
+                    console.log(err);
+                  }
+                })
+              }
             },
             error:(error)=>{
               console.log(error);

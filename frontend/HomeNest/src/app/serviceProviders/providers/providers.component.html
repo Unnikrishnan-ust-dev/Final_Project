@@ -30,7 +30,10 @@
     <div class="service-cards">
         <app-provider-card 
         *ngFor="let providers of serviceProviders" 
-        [providerName] = "providers.username??''">
+        [providerName] = "providers.username??''"
+        [skills]="providers.skills??''"
+        [location]="providers.location"
+        [occupation]="providers.occupation??''">
         </app-provider-card>
     </div>
 </main>

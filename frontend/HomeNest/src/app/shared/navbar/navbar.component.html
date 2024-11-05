@@ -1,18 +1,22 @@
 <nav>
     <img class="logo" src={{logoLink}} alt="logo">
     <ul class="nav-links manrope-regular">
-        <li routerLink="/">Home</li>
         @if (user?.role=="SERVICE_PROVIDER") {
+            <li routerLink="/services/provider">All Services</li>
             <li routerLink="/service-form">Create Service</li>
+            <li routerLink="/order-page-provider">All Orders</li>
+            
         }@else {
+            <li routerLink="/">Home</li>
             <li routerLink="/services">All Services</li>
             <li routerLink="/providers">Providers</li>
+            <li routerLink="/order-page-user">All Orders</li>
         }
-        <li>About</li>
-        <li>Contact</li>
+        <!-- <li>About</li>
+        <li>Contact</li> -->
     </ul>
     <div *ngIf="isAuthenticated" class="profile-icons">
-        <fa-icon (click)="openNotifications()" class="notification-icon" [icon]="notificationIcon" style="color: #9095A1;cursor: pointer;"></fa-icon>
+        <!-- <fa-icon (click)="openNotifications()" class="notification-icon" [icon]="notificationIcon" style="color: #9095A1;cursor: pointer;"></fa-icon> -->
         <div>
             <div style="background-color: rgba(137, 43, 226, 0.511); border-radius: 50%;"><img class="avatar-img" src={{avatarLink}} alt="profile-pic"></div>
             <div  (click)="openProfile()" style="user-select: none;"><fa-icon class="down-arrow" size="lg" [icon]="downArrow" style="color: #9095A1;cursor: pointer;user-select: none;"></fa-icon></div>

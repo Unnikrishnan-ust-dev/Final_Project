@@ -1,0 +1,24 @@
+<div class="contact-container">
+    <h1>Contact Us</h1>
+    <p>If you have any questions, feel free to reach out to us through the form below:</p>
+    
+    <form (submit)="onSubmit()">
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" id="name" [(ngModel)]="contactForm.name" name="name" required />
+      </div>
+  
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" [(ngModel)]="contactForm.email" name="email" required />
+      </div>
+  
+      <div class="form-group">
+        <label for="message">Message</label>
+        <textarea id="message" [(ngModel)]="contactForm.message" name="message" rows="5" required></textarea>
+      </div>
+  
+      <button type="submit" class="submit-btn">Submit</button>
+    </form>
+  </div>
+  

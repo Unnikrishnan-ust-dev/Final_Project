@@ -92,7 +92,7 @@ export class ProviderOrdersComponent implements OnInit {
   selectOrder(orderId: number): void {
     this.orderService.getBookingById(orderId).subscribe(data => {
       this.selectedOrder = data;
-      this.authService.getUserByUserId(data.providerUserId).subscribe((providerData) => {
+      this.authService.getUserByUserId(data.userId).subscribe((providerData) => {
         this.serviceProviderBasicProfile = providerData;
       })
     });
@@ -104,7 +104,7 @@ export class ProviderOrdersComponent implements OnInit {
     // This is a placeholder function, implement as needed
   }
 
-  contactServiceProvider(): void {
+  contactCustomer(): void {
     // Implement contact functionality
     this.showProviderModal = !this.showProviderModal;
   }

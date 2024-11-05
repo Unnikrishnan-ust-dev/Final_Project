@@ -58,3 +58,7 @@ form{
     display: flex;
     gap: 10px;
 }
+.logo{
+    width: 150px;
+    border-radius: 50%;
+}

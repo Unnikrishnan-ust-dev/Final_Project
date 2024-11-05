@@ -1,0 +1,24 @@
+<div class="services-container" *ngIf="services.length > 0; else noServices">
+    <div *ngFor="let service of services" class="service-card">
+      <h2>{{ service.name }}</h2>
+      <p><strong>Category:</strong> {{ service.category }}</p>
+      <p><strong>Description:</strong> {{ service.description }}</p>
+      <p><strong>Price:</strong> ₹{{ service.price }}</p>
+      <p><strong>Location:</strong> {{ service.location }}</p>
+      <p><strong>Created At:</strong> {{ service.createdAt | date: 'short' }}</p>
+      <p><strong>Updated At:</strong> {{ service.updatedAt | date: 'short' }}</p>
+      
+      <!-- Buttons for Update and Delete -->
+      <div class="card-actions">
+        <button class="btn-update" (click)="onUpdate(service.id)">Update</button>
+        <button class="btn-delete" (click)="onDelete(service.id)">Delete</button>
+      </div>
+    </div>
+  </div>
+  
+  <ng-template #noServices>
+    <div class="no-services-message">
+      <p>No services found. <span>Create one</span> to get started!</p>
+    </div>
+  </ng-template>
+  

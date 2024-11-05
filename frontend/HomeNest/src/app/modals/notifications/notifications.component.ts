@@ -1,7 +1,10 @@
 import { NgFor, NgIf } from '@angular/common';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faClose } from '@fortawesome/free-solid-svg-icons';
+import { Notification } from '../../entity/notification.model';
+import { NotificationService } from '../../notification.service';
+import { AuthService } from '../../auth.service';
 
 @Component({
   selector: 'app-notifications',
@@ -10,7 +13,7 @@ import { faClose } from '@fortawesome/free-solid-svg-icons';
   templateUrl: './notifications.component.html',
   styleUrl: './notifications.component.css'
 })
-export class NotificationsComponent {
+export class NotificationsComponent implements OnInit{
   closeModal() {
     this.showModal = false;
     this.modalEvent.emit(this.showModal);
@@ -20,14 +23,21 @@ export class NotificationsComponent {
 
   closeIcon : any = faClose;
 
-  notifications  = [
-    {title:"Notification 1",body:"First notification"},
-    {title:"Notification 1",body:"First notification"},
-    {title:"Notification 1",body:"First notification"},
-    {title:"Notification 1",body:"First notification"},
-    {title:"Notification 1",body:"First notification"},
-    {title:"Notification 1",body:"First notification"},
-    {title:"Notification 1",body:"First notification"},
-    {title:"Notification 1",body:"First notification"},
-  ]
+  notifications : Notification[]  = [];
+
+  constructor(private notificationService: NotificationService,private authService: AuthService){}
+  ngOnInit(): void {
+    this.authService.user$.subscribe(data=>{
+      data!=null?this.notificationService.getNotificationsByUserId(data?.id).subscribe({
+        next: (notifications)=>{
+          this.notifications = notifications;
+        },
+        error: (err)=>{
+          console.log(err);
+        }
+      }) : console.log(data);
+    })
+  }
+
+
 }

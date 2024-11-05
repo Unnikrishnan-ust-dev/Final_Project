@@ -24,6 +24,7 @@ export class ProfileCardComponent {
 
   logOut() {
     this.router.navigateByUrl('/');
+    window.location.reload();
     this.authService.logout();
   }
 

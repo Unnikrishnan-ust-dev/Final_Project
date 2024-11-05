@@ -1,23 +1,13 @@
-// import { Injectable } from '@angular/core';
-
-// @Injectable({
-//   providedIn: 'root'
-// })
-// export class ServiceprovidersService {
-
-//   constructor() { }
-// }
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ServiceProvider } from './entity/serviceprovider.model';
 
-
 @Injectable({
   providedIn: 'root'
 })
 export class ServiceProviderManagementService {
-  private apiUrl = 'http://localhost:9999/service-provider';  // Base URL for the API
+  private apiUrl = 'http://localhost:9999/service-provider';
 
   constructor(private http: HttpClient) { }
 

@@ -28,6 +28,12 @@ public class ServiceController {
         return ResponseEntity.ok(service);
     }
 
+    @GetMapping("/get-by-provider-id/{id}")
+    public ResponseEntity<List<ServiceEntity>> getServicesByProviderId(@PathVariable int id) {
+        List<ServiceEntity> service = serviceModelService.getAllServiceByProviderId(id);
+        return ResponseEntity.ok(service);
+    }
+
     @GetMapping("/get-by-category/{category}")
     public ResponseEntity<List<ServiceEntity>> getServiceByCategory(@PathVariable String category) {
         List<ServiceEntity> services = serviceModelService.getAllServiceByCategory(category);

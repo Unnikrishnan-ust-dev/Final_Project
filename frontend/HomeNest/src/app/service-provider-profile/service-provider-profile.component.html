@@ -1,4 +1,4 @@
-<div class="profile-container">
+<!-- <div class="profile-container">
   <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
 
     <div class="form-group">
@@ -52,6 +52,86 @@
       <input type="text" id="education" formControlName="education" class="form-control" />
     </div>
 
-    <button type="submit" class="btn btn-primary" [disabled]="!profileForm.valid">Save Profile</button>
+    <button type="submit" class="btn btn-primary" >Save Profile</button>
+  </form>
+</div> -->
+
+
+<div class="profile-container">
+  <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="occupation">Occupation:</label>
+      <input id="occupation" type="text" formControlName="occupation" class="form-control" [class.is-invalid]="profileForm.get('occupation')?.invalid && profileForm.get('occupation')?.touched"/>
+      <div *ngIf="profileForm.get('occupation')?.invalid && profileForm.get('occupation')?.touched" class="invalid-feedback">
+        Occupation is required.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="location">Location:</label>
+      <input id="location" type="text" formControlName="location" class="form-control" [class.is-invalid]="profileForm.get('location')?.invalid && profileForm.get('location')?.touched"/>
+      <div *ngIf="profileForm.get('location')?.invalid && profileForm.get('location')?.touched" class="invalid-feedback">
+        Location is required.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="govtIdType">Government ID Type:</label>
+      <select id="govtIdType" formControlName="govtIdType" class="form-control" [class.is-invalid]="profileForm.get('govtIdType')?.invalid && profileForm.get('govtIdType')?.touched">
+        <option value="" disabled>Select Government ID Type</option>
+        <option value="Aadhar Card">Aadhar Card</option>
+        <option value="PAN Card">PAN Card</option>
+        <option value="Driving License">Driving License</option>
+        <option value="Election Card">Election Card</option>
+      </select>
+      <div *ngIf="profileForm.get('govtIdType')?.invalid && profileForm.get('govtIdType')?.touched" class="invalid-feedback">
+        Government ID Type is required.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="govtId">Government ID:</label>
+      <input id="govtId" type="text" formControlName="govtId" class="form-control" [class.is-invalid]="profileForm.get('govtId')?.invalid && profileForm.get('govtId')?.touched"/>
+      <div *ngIf="profileForm.get('govtId')?.invalid && profileForm.get('govtId')?.touched" class="invalid-feedback">
+        Government ID is required.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="bankAccountNumber">Bank Account Number:</label>
+      <input id="bankAccountNumber" type="text" formControlName="bankAccountNumber" class="form-control" [class.is-invalid]="profileForm.get('bankAccountNumber')?.invalid && profileForm.get('bankAccountNumber')?.touched"/>
+      <div *ngIf="profileForm.get('bankAccountNumber')?.invalid && profileForm.get('bankAccountNumber')?.touched" class="invalid-feedback">
+        Bank Account Number is required.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="ifscCode">IFSC Code:</label>
+      <input id="ifscCode" type="text" formControlName="ifscCode" class="form-control" [class.is-invalid]="profileForm.get('ifscCode')?.invalid && profileForm.get('ifscCode')?.touched"/>
+      <div *ngIf="profileForm.get('ifscCode')?.invalid && profileForm.get('ifscCode')?.touched" class="invalid-feedback">
+        IFSC Code is required.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="bankName">Bank Name:</label>
+      <input id="bankName" type="text" formControlName="bankName" class="form-control" [class.is-invalid]="profileForm.get('bankName')?.invalid && profileForm.get('bankName')?.touched"/>
+      <div *ngIf="profileForm.get('bankName')?.invalid && profileForm.get('bankName')?.touched" class="invalid-feedback">
+        Bank Name is required.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="skills">Skills: </label>
+      <input type="text" id="skills" formControlName="skills" class="form-control"/>
+    </div>
+
+    <div class="form-group">
+      <label for="education">Education: </label>
+      <input type="text" id="education" formControlName="education" class="form-control"/>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save Profile</button>
   </form>
 </div>
+

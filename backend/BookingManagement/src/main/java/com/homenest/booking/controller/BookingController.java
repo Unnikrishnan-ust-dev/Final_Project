@@ -41,6 +41,12 @@ public class BookingController {
         return ResponseEntity.ok(bookings);
     }
 
+    @GetMapping("/get-bookings-by-service-id/{id}")
+    public ResponseEntity<List<Booking>> getBookingsByServiceId(@PathVariable long id){
+        List<Booking> bookings = bookingService.getBookingsByServiceId(id);
+        return ResponseEntity.ok(bookings);
+    }
+
     // Get all bookings (Admin only)
     @GetMapping("/getAll")
     public ResponseEntity<List<Booking>> getAllBookings() {

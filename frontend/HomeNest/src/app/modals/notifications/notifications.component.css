@@ -11,6 +11,8 @@
     border-radius: 10px;
     padding: 20px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    z-index: 100;
+    border: 1px solid rgb(119, 0, 255);
 }
 
 .notifications-title {

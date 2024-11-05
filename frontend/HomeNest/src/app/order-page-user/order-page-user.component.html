@@ -30,14 +30,24 @@
       <!-- Orders List -->
       <div class="orders-list">
         <h3>Orders</h3>
-        <ul>
-          <li *ngFor="let order of orders" (click)="selectOrder(order.id)">
-            <div class="order-summary">
-              <p><strong>Order ID:</strong> {{ order.id }}</p>
-              <p><strong>Status:</strong> {{ order.status }}</p>
-            </div>
-          </li>
-        </ul>
+        @if(orders.length>0){
+          <ul>
+            <li *ngFor="let order of orders" (click)="selectOrder(order.id)">
+              <div class="order-summary">
+                <p><strong>Order ID:</strong> {{ order.id }}</p>
+                <p><strong>Status:</strong> {{ order.status }}</p>
+                <p><strong>Service ID:</strong> {{ order.serviceId }}</p>
+                <p><strong>Provider ID:</strong> {{ order.providerUserId }}</p>
+                <p><strong>Ordered At:</strong> {{ order.createdAt | date:'medium'}}</p>
+              </div>
+            </li>
+          </ul>
+        }@else {
+          <div class="no-services-message">
+            <p>No orders found. <span>Order one</span> to get started!</p>
+          </div>
+        }
+        
       </div>
      
       <!-- Order Details -->
@@ -56,10 +66,15 @@
           </div>
       </div>
           <h3>Order Details</h3>
+          @if(selectedService!=null){
+            <h1><strong>{{ selectedService.name }}</strong> </h1>
+            <p><strong>Price: {{ selectedService.price }}₹</strong></p>
+            <p><strong>Description:</strong> {{ selectedService.description }}</p>
+          }
           <p><strong>Order ID:</strong> {{ selectedOrder.id }}</p>
           <p><strong>Service ID:</strong> {{ selectedOrder.serviceId }}</p>
           <p><strong>Status:</strong> {{ selectedOrder.status }}</p>
-          <p><strong>Payment ID:</strong> {{ selectedOrder.paymentId }}</p>
+          <!-- <p><strong>Payment ID:</strong> {{ selectedOrder.paymentId }}</p> -->
           <p><strong>Delivery Address:</strong> {{ selectedOrder.address }}</p>
           <p><strong>Order Date:</strong> {{ selectedOrder.createdAt | date }}</p>
          
