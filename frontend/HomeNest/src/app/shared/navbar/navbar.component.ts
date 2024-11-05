@@ -37,7 +37,7 @@ export class NavbarComponent implements OnInit {
 
   downArrow = faChevronDown;
   notificationIcon = faBell;
-  logoLink = "/assets/logo.png";
+  logoLink = "/assets/logo-new.png";
   avatarLink = "/assets/profile-pic.png"
   profileDropDownPressed: boolean = false;
   @Input() showNotificationsModal: boolean = false;

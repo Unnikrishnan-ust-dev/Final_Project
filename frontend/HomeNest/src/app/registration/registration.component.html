@@ -1,39 +1,94 @@
 <section>
     <div>
-        <div class="left">
-            <h1>Create an account</h1>
-            <form  (ngSubmit)="handleSubmit()">
-                <label for="fname">First Name</label>
-                <input type="text" name="fname" id="fname" [(ngModel)]="registerData.firstName" required>
-                <label for="lname">Last Name</label>
-                <input type="text" name="lname" id="lname" [(ngModel)]="registerData.lastName" required>
-                <label for="phno">Phone No</label>
-                <input type="number" name="phno" id="phno" [(ngModel)]="registerData.phoneNo" required #phoneNo = "ngModel" maxlength="10">
-                <div *ngIf="phoneNo.invalid && phoneNo.touched" class="alert alert-danger">
-                    <div *ngIf="phoneNo.errors?.['required']">PhoneNo is required.</div>
-                    <div *ngIf="phoneNo.errors?.['maxength']">Invalid PhoneNo</div>
-                </div>
-                <label for="role">Role</label>
-                <input type="text" name="role" id="role" [(ngModel)]="registerData.role" required >
-              
-                <label for="email">Email</label>
-                <input type="email" name="email" id="email" placeholder="example.email@gmail.com" [(ngModel)]="registerData.email" required email #email="ngModel">
-                <div *ngIf="email.invalid && email.touched" class="alert alert-danger">
-                    <div *ngIf="email.errors?.['required']">Email is required.</div>
-                    <div *ngIf="email.errors?.['email']">Invalid email format.</div>
-                </div>
-                
-                <label for="password">Password</label>
-                <input type="password" name="password" id="password" placeholder="Enter at least 8+ characters " [(ngModel)]="registerData.password" required>
-                <label for="cpassword">Confirm Password</label>
-                
-                <input type="password" name="cpassword" id="cpassword" placeholder="Enter at least 8+ characters "[(ngModel)]="confirmPassword" required>
-                <a href="" style="margin: 10px 0;">Already have an account? Login</a>
-                <button>Sign Up</button>
-            </form>
-        </div>
-        <div class="right">
-            <img src={{loginImg}} alt="">
-        </div>
+      <div class="left">
+        <h1>Create an account</h1>
+        <form [formGroup]="registrationForm" (ngSubmit)="handleSubmit()">
+          <label for="fname">First Name</label>
+          <input
+            type="text"
+            id="fname"
+            formControlName="firstName"
+            placeholder="Enter your first name"
+          />
+          <div *ngIf="registrationForm.controls['firstName'].invalid && registrationForm.controls['firstName'].touched">
+            <p style="color: red;font-size: 14px;">First name is required.</p>
+          </div>
+  
+          <label for="lname">Last Name</label>
+          <input
+            type="text"
+            id="lname"
+            formControlName="lastName"
+            placeholder="Enter your last name"
+          />
+          <div *ngIf="registrationForm.controls['lastName'].invalid && registrationForm.controls['lastName'].touched">
+            <p style="color: red;">Last name is required.</p>
+          </div>
+  
+          <label for="phno">Phone No</label>
+          <input
+            type="text"
+            id="phno"
+            formControlName="phoneNo"
+            placeholder="10-digit phone number"
+            maxlength="10"
+          />
+          <div *ngIf="registrationForm.controls['phoneNo'].invalid && registrationForm.controls['phoneNo'].touched">
+            <p *ngIf="registrationForm.controls['phoneNo'].errors?.['required']" style="color: red;">Phone number is required.</p>
+            <p *ngIf="registrationForm.controls['phoneNo'].errors?.['pattern']" style="color: red;">Phone number must be 10 digits.</p>
+          </div>
+  
+          <label for="role">Role</label>
+          <select id="role" formControlName="role" required>
+            <option value="USER">Consumer</option>
+            <option value="SERVICE_PROVIDER">Service Provider</option>
+          </select>
+          <div *ngIf="registrationForm.controls['role'].invalid && registrationForm.controls['role'].touched">
+            <p style="color: red;">Role is required.</p>
+          </div>
+  
+          <label for="email">Email</label>
+          <input
+            type="email"
+            id="email"
+            formControlName="email"
+            placeholder="example.email@gmail.com"
+          />
+          <div *ngIf="registrationForm.controls['email'].invalid && registrationForm.controls['email'].touched">
+            <p *ngIf="registrationForm.controls['email'].errors?.['required']" style="color: red;">Email is required.</p>
+            <p *ngIf="registrationForm.controls['email'].errors?.['email']" style="color: red;">Invalid email format.</p>
+          </div>
+  
+          <label for="password">Password</label>
+          <input
+            type="password"
+            id="password"
+            formControlName="password"
+            placeholder="Enter at least 8+ characters"
+          />
+          <div *ngIf="registrationForm.controls['password'].invalid && registrationForm.controls['password'].touched">
+            <p *ngIf="registrationForm.controls['password'].errors?.['required']" style="color: red;">Password is required.</p>
+            <p *ngIf="registrationForm.controls['password'].errors?.['minlength']" style="color: red;">Password must be at least 8 characters.</p>
+          </div>
+  
+          <label for="cpassword">Confirm Password</label>
+          <input
+            type="password"
+            id="cpassword"
+            formControlName="confirmPassword"
+            placeholder="Re-enter your password"
+          />
+          <div *ngIf="registrationForm.controls['confirmPassword'].invalid && registrationForm.controls['confirmPassword'].touched">
+            <p style="color: red;">Confirm Password is required.</p>
+          </div>
+  
+          <a routerLink="/login" style="margin: 10px 0; display: block;">Already have an account? Login</a>
+          <button [disabled]="registrationForm.invalid">Sign Up</button>
+        </form>
+      </div>
+      <div class="right">
+        <img [src]="loginImg" alt="Login illustration" />
+      </div>
     </div>
-</section>
+  </section>
+  

@@ -1,24 +1,13 @@
-// import { Injectable } from '@angular/core';
-
-// @Injectable({
-//   providedIn: 'root'
-// })
-// export class ServicemanagementService {
-
-//   constructor() { }
-// }
-
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Service } from './entity/services.model';
- // Adjust the path as necessary
 
 @Injectable({
   providedIn: 'root',
 })
 export class ServiceManagementService {
-  private apiUrl = 'http://localhost:9999/services'; // Replace with your backend URL
+  private apiUrl = 'http://localhost:9999/services';
 
   constructor(private http: HttpClient) {}
 
@@ -30,6 +19,11 @@ export class ServiceManagementService {
   // Get service by ID
   getServiceById(id: number): Observable<Service> {
     return this.http.get<Service>(`${this.apiUrl}/get-by-id/${id}`);
+  }
+  
+  // get services by provider id
+  getServicesByProviderId(id: number) : Observable<Service[]> {
+    return this.http.get<Service[]>(`${this.apiUrl}/get-by-provider-id/${id}`);
   }
 
   // Get services by category
@@ -55,7 +49,7 @@ export class ServiceManagementService {
 
   // Delete a service by ID
   deleteService(id: number): Observable<string> {
-    return this.http.delete<string>(`${this.apiUrl}/delete-service/${id}`);
+    return this.http.delete<string>(`${this.apiUrl}/delete-service/${id}`, { responseType: 'text' as 'json'});
   }
 }
 

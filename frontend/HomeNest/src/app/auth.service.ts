@@ -51,7 +51,6 @@ export class AuthService {
  
   // To log out the user
   logout() {
-    // this.user = null;
     this._user.next(null);
     localStorage.removeItem('expiresIn');
     localStorage.removeItem('email');

@@ -1,0 +1,74 @@
+<div class="container">
+    <h2 class="form-title">Update Service</h2>
+    <form (ngSubmit)="handleSubmit()">
+      <div class="form-group">
+        <label for="name">Service Name:</label>
+        <input
+          type="text"
+          id="name"
+          name="name"
+          class="form-control"
+          placeholder="Enter service name"
+          [(ngModel)]="serviceData.name"
+          required
+        />
+       
+      </div>
+ 
+      <div class="form-group">
+        <label for="location">Location:</label>
+        <input
+          type="text"
+          id="location"
+          name="location"
+          class="form-control"
+          placeholder="Enter location"
+          [(ngModel)]="serviceData.location"
+          required
+        />
+     
+      </div>
+ 
+      <div class="form-group">
+        <label for="category">Category:</label>
+        <input
+          type="text"
+          id="category"
+          name="category"
+          class="form-control"
+          placeholder="Enter category"
+          [(ngModel)]="serviceData.category"
+          required
+        />
+     
+      </div>
+ 
+      <div class="form-group">
+        <label for="description">Description:</label>
+        <textarea
+          id="description"
+          name="description"
+          class="form-control"
+          rows="3"
+          placeholder="Enter description"
+          [(ngModel)]="serviceData.description"
+        ></textarea>
+      </div>
+ 
+      <div class="form-group">
+        <label for="price">Price:</label>
+        <input
+          type="number"
+          id="price"
+          name="price"
+          class="form-control"
+          placeholder="Enter price"
+          [(ngModel)]="serviceData.price"
+          required
+          min="0"
+        />
+      </div>
+   
+      <button type="submit" class="btn-submit" >Add Service</button>
+    </form>
+  </div>

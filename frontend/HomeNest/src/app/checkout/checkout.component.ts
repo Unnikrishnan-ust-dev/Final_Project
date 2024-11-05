@@ -5,6 +5,8 @@ import { BookingService } from '../booking.service';
 import { Booking } from '../entity/booking.model';
 import { BookingStatus } from '../entity/bookingStatus.model';
 import { AuthService } from '../auth.service';
+import { NotificationService } from '../notification.service';
+import { User } from '../entity/userprofile.model';
 
 @Component({
   selector: 'app-checkout',
@@ -16,10 +18,11 @@ import { AuthService } from '../auth.service';
 export class CheckoutComponent implements OnInit {
 
   userEmail : string = "";
+  user : User|null=null;
   locationButtonWidth: any = "100%";
   loaderState : string = "none";
 
-  constructor(private route: ActivatedRoute,private bookingService: BookingService,private authService:AuthService,private router: Router) { };
+  constructor(private route: ActivatedRoute,private bookingService: BookingService,private authService:AuthService,private notificationService: NotificationService) { };
 
   currentLocDiv = "none";
   serviceName: string | null = "";
@@ -71,6 +74,7 @@ export class CheckoutComponent implements OnInit {
     });
 
     this.authService.getAuthenticatedUser().subscribe(data=>{
+      this.user = data;
       this.userEmail = data.email;
       this.paymentPayload.customer = {
         contact: data.phoneNo??"",
@@ -105,6 +109,16 @@ export class CheckoutComponent implements OnInit {
       next:(data)=>{
         this.hideLoader();
         console.log(data);
+        if(this.user!=null){
+          this.notificationService.createNotification(this.user?.id,"You started the purchase of "+this.serviceName+".Please complete the payment").subscribe({
+            next:(value)=>{
+              console.log(value);
+            },
+            error: (err)=>{
+              console.log(err);
+            }
+          })
+        }
         window.location.replace(data.short_url);
       },
       error:(err)=>{

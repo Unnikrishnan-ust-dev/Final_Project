@@ -55,6 +55,12 @@ export class BookingService {
     const url = `${this.baseUrl}/get-all-orders-by-provider-id/${userId}`;
     return this.http.get<Booking[]>(url);
   }
+  
+  getBookingsByServiceId(serviceId: number): Observable<Booking[]> {
+    const url = `${this.baseUrl}/get-bookings-by-service-id/${serviceId}`;
+    return this.http.get<Booking[]>(url);
+    
+  }
 
   // Cancel a booking
   deleteBooking(id: number): Observable<void> {

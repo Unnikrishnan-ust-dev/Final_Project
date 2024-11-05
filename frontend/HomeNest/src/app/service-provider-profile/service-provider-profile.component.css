@@ -147,3 +147,23 @@
     background-color: #0056b3;
     border-color: #004085;
   }
+
+
+  /* Styling for invalid form fields */
+.is-invalid {
+  border-color: #dc3545; /* Red border to indicate error */
+  background-color: #f8d7da; /* Light red background */
+}
+
+.is-invalid:focus {
+  border-color: #dc3545;
+  box-shadow: 0 0 5px rgba(220, 53, 69, 0.5); /* Red shadow on focus */
+}
+
+/* Styling for the error message */
+.invalid-feedback {
+  color: #dc3545; /* Red text for error messages */
+  margin-top: 5px;
+  font-size: 0.875rem; /* Slightly smaller font */
+  display: block; /* Ensures the message is visible */
+}

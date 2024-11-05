@@ -25,6 +25,7 @@
     "@fortawesome/free-regular-svg-icons": "^6.6.0",
     "@fortawesome/free-solid-svg-icons": "^6.6.0",
     "home-nest": "file:",
+    "ngx-toastr": "^19.0.0",
     "razorpay": "^2.9.4",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",

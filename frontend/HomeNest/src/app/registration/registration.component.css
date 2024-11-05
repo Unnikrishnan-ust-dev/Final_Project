@@ -38,19 +38,20 @@ form{
     display: grid;
     place-items: center;
 }
-input,button{
+input,button,select,option{
     margin-bottom: 10px;
     padding: 10px;
     border-radius: 5px;
     border: none;
     outline: none;
 }
-input{
+input,select{
     background-color: #F3F4F6;
 }
 button{
     background-color: #6D31ED;
     color: #fff;
+    cursor: pointer;
 }
 label{
     float: left !important;

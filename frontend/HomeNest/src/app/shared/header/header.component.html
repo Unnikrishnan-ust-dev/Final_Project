@@ -1,9 +1,13 @@
 <header>
     <div>
         <div class="left">
-            <h1 class="lexend-bold" style="color: #6D31ED;">16,780 Services</h1>
+            @if(serviceCount==0){
+                <h1 class="lexend-bold" style="color: #6D31ED;">Amazing Services</h1>
+            }@else {
+                <h1 class="lexend-bold" style="color: #6D31ED;">{{serviceCount}} Services</h1>
+            }
             <h1 class="lexend-bold">For You</h1>
-            <p class="manrope-regular">Non enim eu excepteur cupidatat consectetur do ea est reprehenderit incididunt irure veniam cupidatat est non amet. Enim duis aute tempor laboris ipsum dolore non.</p>
+            <p class="manrope-regular">Looking for top-notch services tailored just for you? Whether you need a quick fix or a helping hand, we've got the pros to get the job done right. Discover trusted experts ready to make your life easier. Book now and experience quality at your doorstep!</p>
             <button class="manrope-regular" routerLink="services">Explore now</button>
         </div>
         <div class="right">
