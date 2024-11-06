@@ -103,13 +103,3 @@ This folder contains all documentation related to the project, including:
 1. Ensure MySQL is installed and running.
 2. Create the necessary databases for each microservice as defined in the `application.properties` files located in the respective microservices.
 3. Run the database migration scripts provided in the `resources` folder.
-
-## API Documentation
-
-Detailed API documentation is available in the `resources` folder, with instructions on how to interact with the RESTful APIs exposed by the backend services.
-
-## Contribution Guidelines
-
-Contributions to **Home Nest** are welcome! Please follow the guidelines provided in the `resources/contributing.md` file.
-
-This `README.md` provides a structured overview of the project, its components, and how to run it. Let me know if you'd like to adjust or expand any sections.
